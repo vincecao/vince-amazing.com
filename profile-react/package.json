@@ -13,21 +13,23 @@
     "react-scripts": "4.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.0.3",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.2",
-    "postcss": "^8.1.10",
-    "postcss-cli": "^8.3.0",
-    "prettier": "^2.2.1",
-    "tailwindcss": "^2.0.1"
+    "autoprefixer": "^10.4.2",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.3",
+    "postcss": "^8.4.6",
+    "postcss-cli": "^9.1.0",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.0.22"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "build:styles": "npx tailwindcss build ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/tailwind.css",
-    "prebuild": "yarn build:styles",
-    "prestart": "yarn build:styles",
+    "build:tailwindcss": "npx tailwindcss -i ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/tailwind.css",
+    "watch:tailwindcss": "npx tailwindcss -i ./src/index.tailwind.css -o ./src/tailwind.css --watch",
+    "watch": "npm run watch:tailwindcss",
+    "prebuild": "yarn build:tailwindcss",
+    "prestart": "yarn build:tailwindcss",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

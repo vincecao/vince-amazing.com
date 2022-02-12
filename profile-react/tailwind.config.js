@@ -1,8 +1,5 @@
 module.exports = {
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.html', './src/**/*.jsx', './src/**/*.js'],
-  },
+  content: ['./src/**/*.{html,ts,tsx,js,jsx}'],
   theme: {
     // fontFamily: {
     //   sans: ["-apple-system", "BlinkMacSystemFont"],
