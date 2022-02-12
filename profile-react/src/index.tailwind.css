@@ -66,11 +66,10 @@
   font-style: oblique;
 }
 
-@responsive {
-  .text-shadow {
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
-  }
+.text-shadow {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
 }
+
 /* blur support*/
 .backdrop-blur {
   backdrop-filter: blur(8px);
