@@ -1,49 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getPhotoSetsPromise } from './flickrComponents/flickrApi';
-import { indexData } from './const';
+import { INDEX_DATA, DEFAULT_IMAGE_LIST } from './const';
+import { PhotoSrc } from './types';
 
-const App = () => {
-  const [imgData, setImgData] = useState([]);
-  const [index, setIndex] = useState(0);
-  const [isHover, setIsHover] = useState(false);
+export default function App(): ReactElement {
+  const [imgData, setImgData] = useState<PhotoSrc[]>([]);
+  const [index, setIndex] = useState<number>(0);
+  const [isHover, setIsHover] = useState<boolean>(false);
+  const timerRef: { current: NodeJS.Timeout | null } = useRef(null);
 
   useEffect(() => {
-    getPhotoSetsPromise().then((response = {}) => {
-      if (response.data) {
-        // console.log(response.data);
-        setImgData(response.data);
+    (async () => {
+      let images: PhotoSrc[] | undefined;
+      try {
+        images = await getPhotoSetsPromise();
+      } catch (e) {
+        console.error(e);
       }
-    });
+      setImgData(images || DEFAULT_IMAGE_LIST);
+    })();
   }, []);
 
   useEffect(() => {
     if (imgData.length > 0) {
-      setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         if (index + 1 === imgData.length) {
           setIndex(0);
         } else {
-          setIndex((_index) => _index + 1);
+          setIndex((i) => i + 1);
         }
       }, 7000);
     }
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
   }, [imgData, index]);
 
-  // useEffect(() => {
-  //   getPublicPhotosPromise().then((response = {}) => {
-  //     if (response.data) {
-  //       console.log(response.data);
-  //     }
-  //   });
-  // }, []);
-
-  const { firstname, lastname, fullname, links } = indexData;
+  const { firstname, lastname, fullname, links } = INDEX_DATA;
 
   return (
     <div className="relative h-screen">
       <AnimatePresence exitBeforeEnter>
         <motion.img
-          // style={{ background: `url("${imgData[index]}")` }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.9, transition: { duration: 1 } }}
           exit={{ opacity: 0, transition: { duration: 1 } }}
@@ -54,21 +53,8 @@ const App = () => {
       </AnimatePresence>
       <div
         className={`absolute top-0 bottom-0 left-0 right-0 border-4 border-white ${isHover ? 'backdrop-blur' : ''}`}
-      ></div>
-      <div
-        // initial={{ scale: 0.95, opacity: 0 }}
-        // animate={{
-        //   scale: 1,
-        //   opacity: 1,
-        //   transition: { duration: 1 },
-        // }}
-        // exit={{
-        //   scale: 0.95,
-        //   opacity: 0,
-        //   transition: { duration: 1 },
-        // }}
-        className="absolute w-full h-screen"
-      >
+      />
+      <div className="absolute w-full h-screen">
         <AnimatePresence exitBeforeEnter>
           <motion.div
             key={`text-${index}`}
@@ -93,13 +79,10 @@ const App = () => {
             <div className="flex flex-col md:flex-row w-full text-center m-auto justify-center items-center">
               {links.map((link, index) => (
                 <div key={link.link}>
-                  {/* <ins>&middot;</ins> */}
-                  {/* {index > 0 && <p className="inline"> / </p>} */}
                   <motion.div
                     whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                     onMouseEnter={() => setIsHover(true)}
                     onMouseLeave={() => setIsHover(false)}
-                    // className="transform scale-100 transition duration-150 ease-in-out hover:scale-125"
                   >
                     <p className="inline italic">/</p>
                     <a
@@ -134,6 +117,4 @@ const App = () => {
       </div>
     </div>
   );
-};
-
-export default App;
+}

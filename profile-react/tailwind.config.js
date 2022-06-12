@@ -1,13 +1,6 @@
 module.exports = {
   content: ['./src/**/*.{html,ts,tsx,js,jsx}'],
   theme: {
-    // fontFamily: {
-    //   sans: ["-apple-system", "BlinkMacSystemFont"],
-    //   serif: ["Georgia", "Cambria"],
-    //   mono: ["SFMono-Regular", "Menlo"],
-    //   display: ["Oswald"],
-    //   body: ["Open Sans"],
-    // },
     extend: {
       colors: {
         primary: '#FF6363',
