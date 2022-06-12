@@ -1,15 +1,16 @@
 module.exports = {
   // extends: 'airbnb',
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
+    es2021: true,
   },
   plugins: ['react'],
   rules: {
     'react/jsx-filename-extension': [
       2,
       {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     ],
     'object-curly-newline': 'off',

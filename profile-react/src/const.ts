@@ -1,4 +1,6 @@
-export const indexData = {
+import { IndexData, PhotoSrc } from "./types";
+
+export const INDEX_DATA: IndexData = {
   firstname: 'LINENG',
   lastname: 'CAO',
   fullname: '曹文斯',
@@ -18,27 +20,29 @@ export const indexData = {
       link: '//github.com/vincecao',
       name: 'Github',
     },
-    // {
-    //   title: "vDanbooru",
-    //   link:
-    //     "http://vince-amazing.us-west-1.elasticbeanstalk.com/vdanbooru-react",
-    //   name: "vDanbooru",
-    // },
-    // {
-    //   title: "Projects",
-    //   link: "./projects/",
-    //   name: "Projects",
-    // },
-    // {
-    //     "title": "Mastodon",
-    //     "link": "//moe.cat/@vincec",
-    //     "name": "mastodon"
-    // },
-    // {
-    //     "title": "Gitlab",
-    //     "link": "//gitlab.com/vcec/",
-    //     "name": "gitlab"
-    // },
+    /*
+    {
+      title: "vDanbooru",
+      link:
+        "http://vince-amazing.us-west-1.elasticbeanstalk.com/vdanbooru-react",
+      name: "vDanbooru",
+    },
+    {
+      title: "Projects",
+      link: "./projects/",
+      name: "Projects",
+    },
+    {
+        "title": "Mastodon",
+        "link": "//moe.cat/@vincec",
+        "name": "mastodon"
+    },
+    {
+        "title": "Gitlab",
+        "link": "//gitlab.com/vcec/",
+        "name": "gitlab"
+    },
+    */
     {
       title: 'Linkedin',
       link: '//linkedin.com/in/lineng-vince-cao-36b693121',
@@ -62,7 +66,7 @@ export const indexData = {
   ],
 };
 
-export const defaultImageList = [
+export const DEFAULT_IMAGE_LIST: PhotoSrc[] = [
   'https://live.staticflickr.com/65535/50329165341_739d843a7b_k_d.jpg',
   'https://live.staticflickr.com/65535/50328491533_d8918c8ab4_o_d.jpg',
   'https://live.staticflickr.com/65535/50329162171_30c34f5889_o_d.jpg',
@@ -96,5 +100,3 @@ export const defaultImageList = [
   'https://i.imgur.com/kGAj3Xv.jpg',
   'https://i.imgur.com/rsLege5.jpg',
 ];
-
-export default { indexData, defaultImageList };
