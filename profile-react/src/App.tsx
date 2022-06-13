@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getPhotoSetsPromise } from './flickrComponents/flickrApi';
+import { usePromiseState } from '@vincecao/use-tools';
+import { getPhotoSetsPromise } from './utils/flickrApi';
 import { INDEX_DATA, DEFAULT_IMAGE_LIST } from './const';
 import { PhotoSrc } from './types';
 
@@ -10,17 +11,16 @@ export default function App(): ReactElement {
   const [isHover, setIsHover] = useState<boolean>(false);
   const timerRef: { current: NodeJS.Timeout | null } = useRef(null);
 
-  useEffect(() => {
-    (async () => {
-      let images: PhotoSrc[] | undefined;
-      try {
-        images = await getPhotoSetsPromise();
-      } catch (e) {
-        console.error(e);
-      }
-      setImgData(images || DEFAULT_IMAGE_LIST);
-    })();
-  }, []);
+  usePromiseState<PhotoSrc[]>({
+    promise: getPhotoSetsPromise,
+    onError: (e) => {
+      console.error(e);
+      setImgData(DEFAULT_IMAGE_LIST);
+    },
+    onSuccess: (data) => {
+      setImgData(data);
+    }
+  })
 
   useEffect(() => {
     if (imgData.length > 0) {

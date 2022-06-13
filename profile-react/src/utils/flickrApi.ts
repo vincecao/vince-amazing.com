@@ -8,7 +8,7 @@ const PHOTOSETS_ID = process.env.REACT_APP_PHOTOSETS_ID;
 
 const FILTER_REST_URL = 'https://www.flickr.com/services/rest/';
 
-export async function getPublicPhotosPromise() {
+export async function getPublicPhotosPromise(): Promise<PhotoSrc[]> {
   try {
     const imgs = await axios
       .get(FILTER_REST_URL, {
@@ -43,7 +43,7 @@ export async function getPublicPhotosPromise() {
   }
 }
 
-export async function getPhotoSetsPromise() {
+export async function getPhotoSetsPromise(): Promise<PhotoSrc[]> {
   try {
     const imgs = await axios
       .get(FILTER_REST_URL, {
