@@ -1,9 +1,11 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePromiseState } from '@vincecao/use-tools';
-import { getPhotoSetsPromise } from './utils/flickrApi';
-import { INDEX_DATA, DEFAULT_IMAGE_LIST } from './const';
+import { getPublicPhotos } from './utils/flickr';
+import { INDEX_DATA } from './const';
 import { PhotoSrc } from './types';
+import { shuffle } from './utils/shuffle';
 
 export default function App(): ReactElement {
   const [imgData, setImgData] = useState<PhotoSrc[]>([]);
@@ -12,15 +14,14 @@ export default function App(): ReactElement {
   const timerRef: { current: NodeJS.Timeout | null } = useRef(null);
 
   usePromiseState<PhotoSrc[]>({
-    promise: getPhotoSetsPromise,
+    promise: getPublicPhotos,
     onError: (e) => {
       console.error(e);
-      setImgData(DEFAULT_IMAGE_LIST);
     },
     onSuccess: (data) => {
-      setImgData(data);
-    }
-  })
+      setImgData(shuffle(data));
+    },
+  });
 
   useEffect(() => {
     if (imgData.length > 0) {
@@ -52,7 +53,9 @@ export default function App(): ReactElement {
         />
       </AnimatePresence>
       <div
-        className={`absolute top-0 bottom-0 left-0 right-0 border-4 border-white ${isHover ? 'backdrop-blur' : ''}`}
+        className={classNames('absolute top-0 bottom-0 left-0 right-0 border-4 border-white', {
+          'backdrop-blur': isHover,
+        })}
       />
       <div className="absolute w-full h-screen">
         <AnimatePresence exitBeforeEnter>
