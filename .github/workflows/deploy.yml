@@ -9,18 +9,29 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build & Depoly
+      - name: Build blog with hexo
+        run: |
+          sudo yarn global add hexo-cli
+          cd blog && yarn && hexo g && cd ..
+      - name: Build profile page
+        env:
+          REACT_APP_FLICKR_API_KEY: ${{secrets.FLICKR_API_KEY}}
+          REACT_APP_FLICKR_PHOTOSETS_ID: ${{secrets.FLICKR_PHOTOSETS_ID}}
+          REACT_APP_FLICKR_USER_ID: ${{secrets.FLICKR_USER_ID}}
         run: |
           sudo yarn global add hexo-cli
           cd blog && yarn && hexo g && cd ..
           cd profile-react && yarn && CI=false yarn build && cd ..
+      - name: Move blog, profile and additional files to correct location
+        run: |
           rm -rf public && mkdir public
           mv blog/public/blog public
           mv profile-react/build/* public
-          cp -r public_source/* public
+          mv public_source/* public
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
