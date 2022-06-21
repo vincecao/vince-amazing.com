@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePromiseState } from '@vincecao/use-tools';
@@ -14,7 +14,7 @@ export default function App(): ReactElement {
   const timerRef: { current: NodeJS.Timeout | null } = useRef(null);
 
   usePromiseState<PhotoSrc[]>({
-    promise: getPublicPhotos,
+    promise: useCallback(getPublicPhotos, []),
     onError: (e) => {
       console.error(e);
     },

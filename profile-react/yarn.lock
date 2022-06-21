@@ -2778,10 +2778,10 @@
     "@typescript-eslint/types" "5.27.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vincecao/use-tools@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@vincecao/use-tools/-/use-tools-1.0.2.tgz#41f12da07638168ecc812dd4c34d1c0dfc1b6d37"
-  integrity sha512-mg9LFPGWE59Qh6iwMlJpEVDdBqq6/3lW7FEkmzJ2PdGnxY0zpg6nTvkM8adfqFmhElnQD72nWjw0nGcQopH4Rg==
+"@vincecao/use-tools@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@vincecao/use-tools/-/use-tools-1.1.0.tgz#4ffb9d81a0d52877b67c0f4cd27a169e6f263330"
+  integrity sha512-Huw8AKW+IIkGMRDQ0Hr7PwzLOE6MCQpq/nNM7/ktObg4A8fciLF1v1eCDsrrCttZ3DiCiKN3dphvPUZEoJjx8Q==
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
