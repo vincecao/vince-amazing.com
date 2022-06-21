@@ -20,6 +20,18 @@ export const INDEX_DATA: IndexData = {
       link: '//github.com/vincecao',
       name: 'Github',
     },
+    {
+      title: "useTools",
+      link:
+        "https://www.npmjs.com/package/@vincecao/use-tools",
+      name: "UseTools",
+    },
+    {
+      title: "GhibliHub",
+      link:
+        "https://github.com/vincecao/GhibliHub-React-Native",
+      name: "GhibliHub",
+    },
     /*
     {
       title: "vDanbooru",
@@ -48,11 +60,13 @@ export const INDEX_DATA: IndexData = {
       link: '//linkedin.com/in/lineng-vince-cao-36b693121',
       name: 'Linkedin',
     },
+    /*
     {
       title: 'COVID19-Statstic',
       link: '//covid-19-statistics.vercel.app/',
       name: 'COVID-Statstic',
     },
+    */
     {
       title: 'instagram/__viiiince',
       link: '//instagram.com/__viiiince/',
