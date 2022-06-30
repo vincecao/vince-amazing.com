@@ -2778,10 +2778,12 @@
     "@typescript-eslint/types" "5.27.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vincecao/use-tools@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@vincecao/use-tools/-/use-tools-1.1.0.tgz#4ffb9d81a0d52877b67c0f4cd27a169e6f263330"
-  integrity sha512-Huw8AKW+IIkGMRDQ0Hr7PwzLOE6MCQpq/nNM7/ktObg4A8fciLF1v1eCDsrrCttZ3DiCiKN3dphvPUZEoJjx8Q==
+"@vincecao/use-tools@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@vincecao/use-tools/-/use-tools-1.3.0.tgz#b7c9264b20965873a6411520f7ca9c61a93b0953"
+  integrity sha512-AHT2FYi+bm4vR9EAR44wKzUA9HR8+/xJKUW87c1Spz3Kp8CIAAVQvPLwxWXYb4E8Xfsv9hSWgaNaeN8hZ3uzxg==
+  dependencies:
+    lodash.debounce "^4.0.8"
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
