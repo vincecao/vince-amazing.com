@@ -1,42 +1,45 @@
-import React, { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useCallback, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePromiseState } from '@vincecao/use-tools';
+import { usePromiseState, useShuttle, useTimeout } from '@vincecao/use-tools';
 import { getPublicPhotos } from './utils/flickr';
 import { INDEX_DATA } from './const';
 import { PhotoSrc } from './types';
-import { shuffle } from './utils/shuffle';
 
 export default function App(): ReactElement {
-  const [imgData, setImgData] = useState<PhotoSrc[]>([]);
+  const [source, setSource] = useState<PhotoSrc[]>([]);
   const [index, setIndex] = useState<number>(0);
   const [isHover, setIsHover] = useState<boolean>(false);
-  const timerRef: { current: NodeJS.Timeout | null } = useRef(null);
 
-  usePromiseState<PhotoSrc[]>({
-    promise: useCallback(getPublicPhotos, []),
-    onError: (e) => {
-      console.error(e);
-    },
-    onSuccess: (data) => {
-      setImgData(shuffle(data));
-    },
-  });
+  usePromiseState<PhotoSrc[]>(
+    useCallback(getPublicPhotos, []),
+    useMemo(
+      () => ({
+        onError: (e) => {
+          console.error(e);
+        },
+        onSuccess: (data) => {
+          setSource(data);
+        },
+      }),
+      []
+    )
+  );
 
-  useEffect(() => {
-    if (imgData.length > 0) {
-      timerRef.current = setTimeout(() => {
+  const imgData = useShuttle(source);
+
+  useTimeout(
+    useCallback(() => {
+      if (imgData.length > 0) {
         if (index + 1 === imgData.length) {
           setIndex(0);
         } else {
           setIndex((i) => i + 1);
         }
-      }, 7000);
-    }
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [imgData, index]);
+      }
+    }, [index, imgData]),
+    7000
+  );
 
   const { firstname, lastname, fullname, links } = INDEX_DATA;
 
