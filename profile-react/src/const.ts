@@ -1,4 +1,4 @@
-import { IndexData } from "./types";
+import { IndexData } from './types';
 
 export const INDEX_DATA: IndexData = {
   firstname: 'LINENG',
@@ -32,27 +32,31 @@ export const INDEX_DATA: IndexData = {
         "https://github.com/vincecao/GhibliHub-React-Native",
       name: "GhibliHub",
     },
+    {
+      title: 'COVID19-Statstic',
+      link: '//covid-19-statistics.vercel.app/',
+      name: 'COVID-Statstic',
+    },
     /*
     {
-      title: "vDanbooru",
-      link:
-        "http://vince-amazing.us-west-1.elasticbeanstalk.com/vdanbooru-react",
-      name: "vDanbooru",
+      title: 'vDanbooru',
+      link: 'http://vince-amazing.us-west-1.elasticbeanstalk.com/vdanbooru-react',
+      name: 'vDanbooru',
     },
     {
-      title: "Projects",
-      link: "./projects/",
-      name: "Projects",
+      title: 'Projects',
+      link: './projects/',
+      name: 'Projects',
     },
     {
-        "title": "Mastodon",
-        "link": "//moe.cat/@vincec",
-        "name": "mastodon"
+      title: 'Mastodon',
+      link: '//moe.cat/@vincec',
+      name: 'mastodon',
     },
     {
-        "title": "Gitlab",
-        "link": "//gitlab.com/vcec/",
-        "name": "gitlab"
+      title: 'Gitlab',
+      link: '//gitlab.com/vcec/',
+      name: 'gitlab',
     },
     */
     {
@@ -60,13 +64,6 @@ export const INDEX_DATA: IndexData = {
       link: '//linkedin.com/in/lineng-vince-cao-36b693121',
       name: 'Linkedin',
     },
-    /*
-    {
-      title: 'COVID19-Statstic',
-      link: '//covid-19-statistics.vercel.app/',
-      name: 'COVID-Statstic',
-    },
-    */
     {
       title: 'instagram/__viiiince',
       link: '//instagram.com/__viiiince/',

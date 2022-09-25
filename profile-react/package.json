@@ -10,6 +10,7 @@
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "framer-motion": "^6.3.11",
+    "npm-run-all": "^4.1.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "^5.0.1",
@@ -30,15 +31,16 @@
     "tailwindcss": "^3.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "run-p start:*",
+    "start:tailwindcss": "npm run tailwindcss -- --watch",
+    "start:react": "react-scripts start",
+    "build": "run-s build:*",
+    "build:tailwindcss": "npm run tailwindcss -- --prod",
+    "build:react": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "build:tailwindcss": "npx tailwindcss -i ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/tailwind.css",
-    "watch:tailwindcss": "npx tailwindcss -i ./src/index.tailwind.css -o ./src/tailwind.css --watch",
-    "watch": "npm run watch:tailwindcss",
-    "prebuild": "yarn build:tailwindcss",
-    "prestart": "yarn build:tailwindcss",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tailwindcss": "npx tailwindcss -i ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/tailwind.css",
+    "prestart": "yarn build:tailwindcss"
   },
   "eslintConfig": {
     "extends": "react-app"
