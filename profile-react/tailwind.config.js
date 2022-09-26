@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,ts,tsx,js,jsx}'],
   theme: {
@@ -10,8 +11,12 @@ module.exports = {
         },
       },
       fontFamily: {
-        body: ['CloudKaiXingGBK'],
-        index: ['Vollkorn'],
+        chineseChar: ['CloudKaiXingGBK'],
+        mono: [
+          // 'Cutive Mono', 
+          'Courier Prime', 
+          'Vollkorn'
+        ],
       },
     },
   },

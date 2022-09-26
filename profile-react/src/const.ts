@@ -1,9 +1,15 @@
 import { IndexData } from './types';
 
 export const INDEX_DATA: IndexData = {
-  firstname: 'LINENG',
-  lastname: 'CAO',
-  fullname: '曹文斯',
+  firstname: {
+    english: 'Lineng',
+    chinese: '立能',
+  },
+  lastname: {
+    english: 'CAO',
+    chinese: '曹',
+  },
+  // fullname: '曹文斯',
   links: [
     {
       title: 'Blog',
@@ -21,26 +27,34 @@ export const INDEX_DATA: IndexData = {
       name: 'Github',
     },
     {
-      title: "useTools",
-      link:
-        "https://www.npmjs.com/package/@vincecao/use-tools",
-      name: "UseTools",
+      title: 'GhibliHub',
+      link: '//github.com/vincecao/GhibliHub-React-Native',
+      name: 'GhibliHub',
     },
     {
-      title: "GhibliHub",
-      link:
-        "https://github.com/vincecao/GhibliHub-React-Native",
-      name: "GhibliHub",
+      title: 'useTools',
+      link: '//github.com/vincecao/use-tools',
+      name: 'useTools',
     },
     {
-      title: 'COVID19-Statstic',
+      title: 'useD3',
+      link: '//github.com/vincecao/use-d3',
+      name: 'useD3',
+    },
+    {
+      title: 'COVID19-Statistics',
       link: '//covid-19-statistics.vercel.app/',
-      name: 'COVID-Statstic',
+      name: 'COVID-Statistics',
+    },
+    {
+      title: 'recipe-hub',
+      link: '//v-recipe-hub.herokuapp.com/',
+      name: 'Recipe Hub',
     },
     /*
     {
       title: 'vDanbooru',
-      link: 'http://vince-amazing.us-west-1.elasticbeanstalk.com/vdanbooru-react',
+      link: '//vince-amazing.us-west-1.elasticbeanstalk.com/vdanbooru-react',
       name: 'vDanbooru',
     },
     {
@@ -69,10 +83,12 @@ export const INDEX_DATA: IndexData = {
       link: '//instagram.com/__viiiince/',
       name: 'Instagram',
     },
+    /*
     {
       title: 'flickr/SAABLANCIAS',
       link: '//flickr.com/photos/saablancias/',
       name: 'Flickr',
     },
+    */
   ],
 };

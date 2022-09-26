@@ -5,8 +5,13 @@ export type Link = {
     name: string,
   }
 export type IndexData = {
-    firstname: string;
-    lastname: string;
-    fullname: string;
+    firstname: {
+      english: string;
+      chinese: string;
+    }
+    lastname: {
+      english: string;
+      chinese: string;
+    }
     links: Link[];
 }
