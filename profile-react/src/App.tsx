@@ -55,11 +55,11 @@ export default function App(): ReactElement {
   );
 
   return (
-    <div className="font-mono grid md:grid-cols-11 h-screen w-screen border-['#E11D48'] border-3 overflow-hidden">
-      <div className="col-span-1" />
+    <div className="font-mono grid md:grid-cols-11 h-screen border-['#E11D48'] border-3 overflow-hidden">
+      <div className="hidden md:block col-span-1" />
       <div className="col-span-9 h-full flex justify-center items-center md:space-x-5">
         <motion.button
-          className="fixed md:relative top-0 md:top-auto w-full md:w-3/4 h-full md:h-[80vh] border border-[#E11D48] text-[#E11D48] cursor-pointer bg-[#FECDD3]"
+          className="fixed md:relative top-0 md:top-auto w-full md:w-3/4 bottom-0 md:bottom-auto md:h-[80vh] border border-[#E11D48] text-[#E11D48] cursor-pointer bg-[#FECDD3]"
           style={{ x: 0, y: 0, boxShadow: '5px 5px 0 #E11D48', z: 1 }}
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } }}
@@ -105,10 +105,14 @@ export default function App(): ReactElement {
           </div>
         </motion.button>
 
+        {/* make a mask for mobile */}
+        <div className='block md:hidden fixed top-0 bottom-0 left-0 right-0 z-10' />
+
         <motion.div
           initial={false}
+          style={{ z: 20 }}
           animate={isOpen ? 'open' : 'closed'}
-          className="z-10 fixed md:relative top-0 md:top-auto h-full md:h-auto left-0 md:left-auto w-full md:w-auto m-auto p-5 rounded-lg"
+          className="absolute z-20 pb-26 md:relative top-0 md:top-auto md:h-auto left-0 md:left-auto w-full md:w-auto m-auto p-5 rounded-lg"
         >
           <div className="hidden md:block text-center mb-8 space-y-5">
             <motion.p
@@ -134,7 +138,7 @@ export default function App(): ReactElement {
           >
             <motion.p
               key={`text-${index}`}
-              className="backdrop-blur-sm"
+              className="backdrop-blur-sm p-1 rounded-lg"
               initial={{ color: '#000' }}
               animate={{ color: '#fff', transition: { duration: 0.5 } }}
               exit={{ color: '#000', transition: { duration: 0.5 } }}
@@ -185,24 +189,22 @@ export default function App(): ReactElement {
           </motion.ul>
         </motion.div>
       </div>
-      <div className="absolute top-0 left-0 m-3 z-20">
-        <motion.img
-          initial={{ x: -100 }}
-          animate={{ x: 0, transition: { delay: 1 } }}
-          src="/assets/avatar.png"
-          alt="avatar"
-          className="rounded-full w-12 h-12 shadow-md"
-        />
-      </div>
-      <div className="absolute bottom-0 left-0 m-3 z-20">
-        <motion.p
-          className="text-xs backdrop-blur-sm text-white md:text-black p-1"
-          initial={{ x: -500 }}
-          animate={{ x: 0, transition: { delay: 1.5 } }}
-        >
-          copyright vincecao @ 2022
-        </motion.p>
-      </div>
+      <motion.img
+        initial={{ x: -100 }}
+        style={{ z: 20 }}
+        animate={{ x: 0, transition: { delay: 1 } }}
+        src="/assets/avatar.png"
+        alt="avatar"
+        className="fixed top-0 left-0 m-3 rounded-full w-12 h-12 shadow-md"
+      />
+      <motion.p
+        className="fixed bottom-0 left-0 m-3 text-xs backdrop-blur-sm text-white md:text-black p-1 rounded-lg"
+        style={{ z: 20 }}
+        initial={{ x: -500 }}
+        animate={{ x: 0, transition: { delay: 1.5 } }}
+      >
+        copyright vincecao @ 2022
+      </motion.p>
     </div>
   );
 }

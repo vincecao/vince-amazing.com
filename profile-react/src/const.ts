@@ -9,7 +9,6 @@ export const INDEX_DATA: IndexData = {
     english: 'CAO',
     chinese: '曹',
   },
-  // fullname: '曹文斯',
   links: [
     {
       title: 'Blog',

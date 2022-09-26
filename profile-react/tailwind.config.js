@@ -13,7 +13,6 @@ module.exports = {
       fontFamily: {
         chineseChar: ['CloudKaiXingGBK'],
         mono: [
-          // 'Cutive Mono', 
           'Courier Prime', 
           'Vollkorn'
         ],
