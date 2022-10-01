@@ -1,11 +1,13 @@
 import React, { Fragment, memo, ReactElement, useCallback, useMemo, useState } from 'react';
+import classNames from 'classnames';
+import { stone, zinc, white, black } from 'tailwindcss/colors'
 import { motion, AnimatePresence, useCycle } from 'framer-motion';
-import { usePromiseState, useShuttle, useTimeout } from '@vincecao/use-tools';
+import { Appearance, useAppearance, UsePromiseState, usePromiseState, useShuttle, useTimeout } from '@vincecao/use-tools';
 import { INDEX_DATA } from './const';
 import { PhotoSrc } from './types';
 import { getPublicPhotos } from './utils/flickr';
 
-function useFlickr() {
+function useFlickr(): UsePromiseState<string[]> {
   return usePromiseState<PhotoSrc[]>(
     useCallback(getPublicPhotos, []),
     useMemo(() => ({ onError: (e) => console.error(e) }), [])
@@ -15,6 +17,16 @@ function useFlickr() {
 export default function App(): ReactElement {
   const [data] = useFlickr();
   const [index, setIndex] = useState<number>(0);
+
+  const { osAppearance } = useAppearance()
+  const isDark = osAppearance !== Appearance.LIGHT
+
+  const PRIMARY = isDark ? zinc : stone;
+  const BOX_SHADOW = {
+    INITIAL: `5px 5px 0 ${PRIMARY[600]}`,
+    HOVER: `3px 3px ${PRIMARY[600]}`,
+    TAP: `1px 1px ${PRIMARY[600]}`,
+  };
 
   const images = useShuttle(useMemo(() => data || [], [data]));
 
@@ -55,29 +67,24 @@ export default function App(): ReactElement {
   );
 
   return (
-    <div className="font-mono grid md:grid-cols-11 h-screen border-['#E11D48'] border-3 overflow-hidden">
+    <div
+      className={classNames(
+        'font-mono grid md:grid-cols-11 h-screen overflow-hidden antialiased',
+        'bg-white dark:bg-zinc-800'
+      )}
+    >
       <div className="hidden md:block col-span-1" />
       <div className="col-span-9 h-full flex justify-center items-center md:space-x-5">
         <motion.button
-          className="fixed md:relative top-0 md:top-auto w-full md:w-3/4 bottom-0 md:bottom-auto md:h-[80vh] border border-[#E11D48] text-[#E11D48] cursor-pointer bg-[#FECDD3]"
-          style={{ x: 0, y: 0, boxShadow: '5px 5px 0 #E11D48', z: 1 }}
+          className={classNames(
+            'fixed md:relative top-0 md:top-auto w-full md:w-3/4 bottom-0 md:bottom-auto md:h-[80vh] cursor-pointer',
+            'text-stone-600 dark:text-zinc-600 bg-stone-200 dark:bg-zinc-900'
+          )}
+          style={{ x: 0, y: 0, z: 1, boxShadow: BOX_SHADOW.INITIAL }}
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } }}
-          whileHover={{
-            y: 2,
-            x: 2,
-            transition: { duration: 0.03 },
-            boxShadow: '3px 3px #E11D48',
-            z: -1,
-            opacity: 0.7,
-          }}
-          whileTap={{
-            y: 4.4,
-            x: 4.4,
-            transition: { duration: 0.03 },
-            boxShadow: '1px 1px #E11D48',
-            opacity: 0.3,
-          }}
+          whileHover={{ x: 2, y: 2, z: -1, opacity: 0.7, boxShadow: BOX_SHADOW.HOVER, transition: { duration: 0.03 } }}
+          whileTap={{ x: 4.4, y: 4.4, opacity: 0.3, boxShadow: BOX_SHADOW.TAP, transition: { duration: 0.03 } }}
           onClick={() => window.open('//flickr.com/photos/saablancias/')}
         >
           <AnimatePresence exitBeforeEnter>
@@ -86,7 +93,7 @@ export default function App(): ReactElement {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: 0.5 } }}
               exit={{ opacity: 0, transition: { duration: 0.5 } }}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale dark:brightness-90"
               src={images[index]}
             />
           </AnimatePresence>
@@ -95,18 +102,18 @@ export default function App(): ReactElement {
               <motion.p
                 key={`text-${index}`}
                 className="text-xs p-1 backdrop-blur-sm rounded-lg"
-                initial={{ color: '#E11D48' }}
-                animate={{ color: '#fff', transition: { duration: 0.5 } }}
-                exit={{ color: '#E11D48', transition: { duration: 0.5 } }}
+                initial={{ color: PRIMARY[600] }}
+                animate={{ color: white, transition: { duration: 0.5 } }}
+                exit={{ color: PRIMARY[600], transition: { duration: 0.5 } }}
               >
-                Flickr @ saablancias
+                saablancias | Flickr
               </motion.p>
             </AnimatePresence>
           </div>
         </motion.button>
 
         {/* make a mask for mobile */}
-        <div className='block md:hidden fixed top-0 bottom-0 left-0 right-0 z-10' />
+        <div className="block md:hidden fixed top-0 bottom-0 left-0 right-0 z-10" />
 
         <motion.div
           initial={false}
@@ -114,7 +121,9 @@ export default function App(): ReactElement {
           animate={isOpen ? 'open' : 'closed'}
           className="absolute z-20 pb-26 md:relative top-0 md:top-auto md:h-auto left-0 md:left-auto w-full md:w-auto m-auto p-5 rounded-lg"
         >
-          <div className="hidden md:block text-center mb-8 space-y-5">
+          <div
+            className={classNames('hidden md:block text-center mb-8 space-y-5 text-shadow', 'text-zinc-600 dark:text-zinc-200')}
+          >
             <motion.p
               className="rounded-lg"
               initial={{ y: 50, opacity: 0 }}
@@ -139,11 +148,11 @@ export default function App(): ReactElement {
             <motion.p
               key={`text-${index}`}
               className="backdrop-blur-sm p-1 rounded-lg"
-              initial={{ color: '#000' }}
-              animate={{ color: '#fff', transition: { duration: 0.5 } }}
-              exit={{ color: '#000', transition: { duration: 0.5 } }}
+              initial={{ color: black }}
+              animate={{ color: white, transition: { duration: 0.5 } }}
+              exit={{ color: black, transition: { duration: 0.5 } }}
             >
-              <English /> /{' '}
+              <English />
               <span className="font-chineseChar text-2xl">
                 <ChineseCharacter />
               </span>
@@ -157,30 +166,21 @@ export default function App(): ReactElement {
             }}
             className=""
           >
-            {links.map(({ link, name }) => (
+            {links.map(({ link, name }, i) => (
               <motion.li
                 key={name}
-                className="w-full block border p-2 bg-white border-[#E11D48] text-[#E11D48] text-left cursor-pointer"
-                style={{ x: 0, y: 0, boxShadow: '5px 5px 0 #E11D48', z: 1 }}
+                className={classNames(
+                  'w-full block border pl-3 pr-6 py-2 text-left cursor-pointer text-sm',
+                  'bg-stone-100 dark:bg-zinc-900 border-stone-600 dark:border-zinc-500 text-stone-600 dark:text-zinc-300',
+                  { 'rounded-t': i === 0, 'rounded-b': i === links.length - 1 },
+                )}
+                style={{ x: 0, y: 0, z: 1, boxShadow: BOX_SHADOW.INITIAL }}
                 variants={{
                   open: { y: 0, opacity: 1, transition: { y: { stiffness: 1000, velocity: -100 } } },
                   closed: { y: 50, opacity: 0, transition: { y: { stiffness: 1000 } } },
                 }}
-                whileHover={{
-                  y: 2,
-                  x: 2,
-                  transition: { duration: 0.03 },
-                  boxShadow: '3px 3px #E11D48',
-                  z: -1,
-                  backgroundColor: '#FFE4E6',
-                }}
-                whileTap={{
-                  y: 4.4,
-                  x: 4.4,
-                  transition: { duration: 0.03 },
-                  boxShadow: '1px 1px #E11D48',
-                  backgroundColor: '#FECDD3',
-                }}
+                whileHover={{ x: 2, y: 2, z: -1, boxShadow: BOX_SHADOW.HOVER, backgroundColor: isDark ? PRIMARY[800] : PRIMARY[200], transition: { duration: 0.03 } }}
+                whileTap={{ x: 4.4, y: 4.4, boxShadow: BOX_SHADOW.TAP, backgroundColor: isDark ? PRIMARY[700] : PRIMARY[300], transition: { duration: 0.03 } }}
                 onClick={() => window.open(link)}
               >
                 {name}
@@ -189,21 +189,27 @@ export default function App(): ReactElement {
           </motion.ul>
         </motion.div>
       </div>
-      <motion.img
+      <motion.button
         initial={{ x: -100 }}
-        style={{ z: 20 }}
+        style={{ z: 20, boxShadow: BOX_SHADOW.INITIAL }}
         animate={{ x: 0, transition: { delay: 1 } }}
-        src="/assets/avatar.png"
-        alt="avatar"
-        className="fixed top-0 left-0 m-3 rounded-full w-12 h-12 shadow-md"
-      />
+        whileHover={{ x: 2, y: 2, z: -1, boxShadow: BOX_SHADOW.HOVER, transition: { duration: 0.03 } }}
+        whileTap={{ x: 4.4, y: 4.4, boxShadow: BOX_SHADOW.TAP, transition: { duration: 0.03 } }}
+        className="fixed top-0 left-0 m-5 w-12 h-12 rounded-full shadow-md"
+      >
+        <img src="/assets/avatar.png" alt="avatar" className="w-full h-full rounded-full" />
+      </motion.button>
+
       <motion.p
-        className="fixed bottom-0 left-0 m-3 text-xs backdrop-blur-sm text-white md:text-black p-1 rounded-lg"
+        className={classNames(
+          'fixed bottom-0 left-0 m-3 text-xs backdrop-blur-sm p-1 rounded-lg',
+          'text-white md:text-black dark:md:text-white'
+        )}
         style={{ z: 20 }}
         initial={{ x: -500 }}
         animate={{ x: 0, transition: { delay: 1.5 } }}
       >
-        copyright vincecao @ 2022
+        © 2022 LINENG (VINCE) CAO
       </motion.p>
     </div>
   );

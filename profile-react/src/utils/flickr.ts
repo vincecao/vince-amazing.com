@@ -5,7 +5,7 @@ const API_KEY = process.env.REACT_APP_FLICKR_API_KEY;
 const USER_ID = process.env.REACT_APP_FLICKR_USER_ID;
 const PHOTOSETS_ID = process.env.REACT_APP_FLICKR_PHOTOSETS_ID;
 
-const FILTER_REST_URL = 'https://www.flickr.com/services/rest/';
+const FILTER_REST_URL = '//www.flickr.com/services/rest/';
 
 type FlickrPhoto = {
   description: string;

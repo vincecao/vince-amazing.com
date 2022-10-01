@@ -6,7 +6,7 @@ export const INDEX_DATA: IndexData = {
     chinese: '立能',
   },
   lastname: {
-    english: 'CAO',
+    english: 'Cao',
     chinese: '曹',
   },
   links: [
