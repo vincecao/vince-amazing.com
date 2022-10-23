@@ -17,7 +17,7 @@ export const INDEX_DATA: IndexData = {
     },
     {
       title: 'Resume',
-      link: './res/resume/Resume_02_04_2021.pdf',
+      link: './res/resume/Resume_10_22_2022.pdf',
       name: 'Resume',
     },
     {
