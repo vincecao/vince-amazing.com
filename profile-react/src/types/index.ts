@@ -1,4 +1,13 @@
-export type PhotoSrc = string;
+export type PhotoSrc = {
+  h: PhotoSpec,
+  l: PhotoSpec,
+  c: PhotoSpec,
+};
+export type PhotoSpec = {
+  height: number,
+  width: number,
+  url: string
+};
 export type Link = {
     title: string,
     link: string,
