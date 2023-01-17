@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { PhotoSrc } from '../types';
 
-const API_KEY = process.env.REACT_APP_FLICKR_API_KEY;
-const USER_ID = process.env.REACT_APP_FLICKR_USER_ID;
+const api_key = process.env.REACT_APP_FLICKR_API_KEY;
+const user_id = process.env.REACT_APP_FLICKR_USER_ID;
 
-const FILTER_REST_URL = '//www.flickr.com/services/rest/';
+const FILTER_REST_URL = '//www.flickr.com/services/rest/' as string;
 
 type FlickrPhoto = {
   description: string;
@@ -26,6 +26,8 @@ type FlickrPhoto = {
   width_c: number;
 };
 
+type Response = { photos: { photo: FlickrPhoto[] } };
+
 async function getAllPhotos<T>(promise: (page: number) => Promise<T>, key: string, limitedNumPages?: number) {
   let page = 0;
   let totalImgs: FlickrPhoto[] = [];
@@ -41,44 +43,28 @@ async function getAllPhotos<T>(promise: (page: number) => Promise<T>, key: strin
 }
 
 // https://www.flickr.com/services/api/flickr.people.getPublicPhotos.htm
+async function getPhotos(page: number) {
+  const method = 'flickr.people.getPublicPhotos';
+  const extras = 'url_h, url_l, url_c';
+  const format = 'json';
+  const nojsoncallback = 1;
+  const params = { method, api_key, user_id, extras, format, nojsoncallback, page };
+  const { data: fetchData } = await axios.get<Response>(FILTER_REST_URL, { params });
+  return fetchData;
+}
+
+function imageMapper(photo: FlickrPhoto) {
+  const { url_h, height_h, width_h, url_l, height_l, width_l, url_c, height_c, width_c } = photo;
+  const h = { height: height_h, width: width_h, url: url_h };
+  const l = { height: height_l, width: width_l, url: url_l };
+  const c = { height: height_c, width: width_c, url: url_c };
+  return { h, l, c };
+}
+
 export async function getPublicPhotos(): Promise<PhotoSrc[]> {
   try {
-    const totalImgs = await getAllPhotos<{ photos: { photo: FlickrPhoto[] } }>(
-      (page) =>
-        axios
-          .get(FILTER_REST_URL, {
-            params: {
-              method: 'flickr.people.getPublicPhotos',
-              api_key: API_KEY,
-              user_id: USER_ID,
-              extras: 'url_h, url_l, url_c',
-              format: 'json',
-              nojsoncallback: 1,
-              page,
-            },
-          })
-          .then((response) => response.data),
-      'photos'
-    );
-    return totalImgs.map(
-      ({ url_h, height_h, width_h, url_l, height_l, width_l, url_c, height_c, width_c }: FlickrPhoto) => ({
-        h: {
-          height: height_h,
-          width: width_h,
-          url: url_h,
-        },
-        l: {
-          height: height_l,
-          width: width_l,
-          url: url_l,
-        },
-        c: {
-          height: height_c,
-          width: width_c,
-          url: url_c,
-        },
-      })
-    );
+    const totalImgs = await getAllPhotos(getPhotos, 'photos');
+    return totalImgs.map(imageMapper);
   } catch (e) {
     throw new Error(`GetPublicPhotosPromise failed ${e}`);
   }

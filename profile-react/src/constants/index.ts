@@ -1,4 +1,4 @@
-import { IndexData } from './types';
+import { IndexData } from '../types';
 
 export const INDEX_DATA: IndexData = {
   firstname: {
