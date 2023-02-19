@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { memo } from 'react';
-import useStyles from './hoots/useStyles';
+import useStyles from './hooks/useStyles';
 import avatarSource from 'url:/assets/imgs/avatar.png';
 
 const Avatar = memo(({ className }: { className?: string }) => {

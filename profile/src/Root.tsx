@@ -4,7 +4,7 @@ import { useAppearance } from '@vincecao/use-tools';
 import classNames from "classnames";
 
 import { Outlet, useNavigate } from "react-router-dom";
-import useStyles from "./hoots/useStyles";
+import useStyles from "./hooks/useStyles";
 
 
 
