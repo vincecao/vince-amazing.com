@@ -1,5 +1,8 @@
 {
   "eslint.workingDirectories": [
       "./profile-react",
+  ],
+  "cSpell.words": [
+    "imgs"
   ]
 }
