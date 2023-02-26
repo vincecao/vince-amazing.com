@@ -5,9 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        chinese: ['CloudKaiXingGBK'],
+        chinesename: ['CloudKaiXingGBK'],
+        englishname: ['Mansalva'],
         mono: ['Courier Prime'],
-        sans: ['Vollkorn']
+        sans: ['Vollkorn'],
       },
     },
   },

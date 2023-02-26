@@ -1,3 +1,4 @@
+import React from "react";
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { memo } from 'react';
@@ -22,7 +23,7 @@ function Welcome(): React.ReactElement {
   return (
     <div className="space-x-5 flex items-center">
       <Avatar />
-      <span className="text-xl">
+      <span className="text-3xl font-englishname">
         Lineng <b>Cao</b>
       </span>
     </div>
