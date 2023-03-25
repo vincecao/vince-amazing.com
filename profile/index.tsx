@@ -21,7 +21,7 @@ const rootChildrenRoutes = [
   },
   {
     path: "blog",
-    children: [{ path: ":post", element: <Post /> }],
+    children: [{ path: ":postId", element: <Post /> }],
     element: <Blog />,
   },
 ];
@@ -30,6 +30,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <Root />,
     children: rootChildrenRoutes,
   },
 ]);
