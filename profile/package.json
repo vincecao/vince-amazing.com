@@ -5,7 +5,6 @@
   "source": "./index.html",
   "license": "MIT",
   "dependencies": {
-    "@loadable/component": "^5.15.3",
     "@vincecao/use-tools": "^1.6.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",
@@ -14,8 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.5",
-    "react-router-dom": "^6.8.1",
-    "zustand": "^4.3.3"
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.8.3",
