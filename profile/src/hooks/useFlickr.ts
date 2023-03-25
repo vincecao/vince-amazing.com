@@ -1,6 +1,6 @@
+import React, { useCallback } from "react";
 import { usePromiseState } from "@vincecao/use-tools";
-import { $fetch } from "ofetch";
-import { useCallback } from "react";
+import { ofetch } from 'ofetch'
 
 const api_key = process.env.REACT_APP_FLICKR_API_KEY;
 const user_id = process.env.REACT_APP_FLICKR_USER_ID;
@@ -19,7 +19,7 @@ export type PhotoSpec = {
   url: string;
 };
 
-type FlickrPhoto = {
+interface FlickrPhoto {
   description: string;
   path_alias: string;
   id: string;
@@ -62,7 +62,7 @@ async function getPhotos(page: number) {
   const format = "json";
   const nojsoncallback = 1;
   const params = { method, api_key, user_id, extras, format, nojsoncallback, page };
-  const fetchData = await $fetch<Response>(FILTER_REST_URL, { params });
+  const fetchData = await ofetch<Response>(FILTER_REST_URL, { params });
   return fetchData;
 }
 
@@ -84,6 +84,5 @@ export async function getPublicPhotos(): Promise<PhotoSrc[]> {
 }
 
 export default function useFlickr() {
-  const [photos, {}] = usePromiseState(useCallback(getPublicPhotos, []));
-  return photos;
+  return usePromiseState(useCallback(getPublicPhotos, []));
 }

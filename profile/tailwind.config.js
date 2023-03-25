@@ -16,7 +16,9 @@ module.exports = {
     opacity: ['hover', 'disabled', 'focus'],
     cursor: ['hover', 'disabled', 'focus'],
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
   corePlugins: {
     float: false,
   },
