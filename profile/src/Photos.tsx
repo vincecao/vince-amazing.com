@@ -9,14 +9,14 @@ const Image = memo(({ src }: { src: string }) => <img src={src} className="w-[12
 function Photos(): ReactElement {
   const [photos, { status }] = useFlickr();
   const [shuffleVariant, setShuffleVariant] = useState(0);
-  const shuffledPhotos = useShuffle(useMemo(() => (photos ? [...photos].slice(0, 16) : []), [photos, shuffleVariant]));
+  const shuffledPhotos = useShuffle(useMemo(() => (photos ? [...photos] : []), [photos, shuffleVariant]));
 
   if (status === "pending") return <div className="font-['Mansalva']">Loading...</div>;
 
   return (
     <div className="flex flex-col items-center">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
-        {shuffledPhotos.map(({ l: { url } }) => (
+        {shuffledPhotos.slice(0, 16).map(({ l: { url } }) => (
           <Image key={url} src={url} />
         ))}
       </div>
