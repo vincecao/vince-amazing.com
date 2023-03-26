@@ -1,8 +1,8 @@
-import { useShuttle as useShuffle } from "@vincecao/use-tools";
+import { useShuffle } from "@vincecao/use-tools";
 import React, { ReactElement, useMemo, useState } from "react";
 import { memo } from "react";
 import Button from "./commons/Button";
-import useFlickr, { type PhotoSrc } from "./hooks/useFlickr";
+import useFlickr from "./hooks/useFlickr";
 
 const Image = memo(({ src }: { src: string }) => <img src={src} className="w-[12rem] h-[12rem] object-cover transition ease-in-out duration-75 brightness-75 saturate-50 hover:brightness-100 hover:saturate-100 hover:scale-125 hover:z-10 z-0" />);
 
