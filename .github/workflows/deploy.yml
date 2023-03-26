@@ -22,8 +22,10 @@ jobs:
         run: |
           cd profile && yarn && yarn build && cd ..
 
-      - name: Move favicon to correct location
-        run: mv public_source/favicon.ico profile/dist
+      - name: Move favicon, and 404 page to correct location
+        run: |
+          mv public_source/favicon.ico profile/dist
+          mv public_source/404.html profile/dist
 
       - name: Deploy to GitHub Pages
         if: success()
