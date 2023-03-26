@@ -1,4 +1,4 @@
-name: Build and Deploy Personal Page
+name: Build and Deploy Profile Site
 
 on:
   push:
@@ -12,16 +12,7 @@ jobs:
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Build blog with hexo
-        run: |
-          sudo yarn global add hexo-cli
-          cd blog && yarn && hexo g && cd ..
-
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7.12.2
+        uses: actions/checkout@v3
       
       - name: Build profile page
         env:
@@ -29,20 +20,18 @@ jobs:
           REACT_APP_FLICKR_PHOTOSETS_ID: ${{secrets.FLICKR_PHOTOSETS_ID}}
           REACT_APP_FLICKR_USER_ID: ${{secrets.FLICKR_USER_ID}}
         run: |
-          cd profile-react && pnpm i && CI=false pnpm build && cd ..
+          cd profile && yarn && yarn build && cd ..
 
-      - name: Move blog, profile and additional files to correct location
+      - name: Move favicon, and 404 page to correct location
         run: |
-          rm -rf public && mkdir public
-          mv blog/public/blog public
-          mv profile-react/build/* public
-          mv public_source/* public
+          mv public_source/favicon.ico profile/dist
+          mv public_source/404.html profile/dist
 
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
         with:
           target_branch: gh-pages
-          build_dir: public
+          build_dir: profile/dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

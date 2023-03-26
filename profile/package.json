@@ -1,0 +1,37 @@
+{
+  "name": "parcel-react-template",
+  "version": "1.0.0",
+  "author": "Lineng Cao",
+  "source": "./index.html",
+  "license": "MIT",
+  "dependencies": {
+    "@vincecao/use-tools": "^1.6.1",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.29.3",
+    "framer-motion": "^9.0.4",
+    "ofetch": "^1.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^8.0.5",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "^2.8.3",
+    "@parcel/core": "^2.8.3",
+    "@parcel/resolver-glob": "^2.8.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/node": "^18.14.1",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
+    "parcel": "^2.8.3",
+    "parcel-transformer-markdown": "^2.1.1",
+    "postcss": "^8.4.21",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^5.0.2"
+  },
+  "scripts": {
+    "start": "parcel --https",
+    "build": "parcel build"
+  }
+}
