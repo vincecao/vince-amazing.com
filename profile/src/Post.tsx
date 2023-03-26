@@ -10,7 +10,7 @@ const Post = memo(({ postId }: { postId: string }) => {
   const content = useMemo(() => createPostEntry(posts[`${postId}.md`].default), [postId]);
   const date = useMemo(() => (isValid(content.date) ? format(content.date, "Pp") : undefined), []);
   return (
-    <div className="space-y-3 py-10 px-5" style={{ maxWidth: "100vw" }}>
+    <div className="space-y-3 py-10 px-5 font-['Noto_Serif']" style={{ maxWidth: "100vw" }}>
       <h1 className="text-2xl mb-5">{content.title}</h1>
       {date && <p className="italic text-right opacity-50">{date}</p>}
       <ReactMarkdown className="mx-auto prose prose-sm md:prose-base lg:prose-lg prose-zinc dark:prose-invert" children={content.body} />

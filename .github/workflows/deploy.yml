@@ -14,17 +14,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7.28.0
-      
       - name: Build profile page
         env:
           REACT_APP_FLICKR_API_KEY: ${{secrets.FLICKR_API_KEY}}
           REACT_APP_FLICKR_PHOTOSETS_ID: ${{secrets.FLICKR_PHOTOSETS_ID}}
           REACT_APP_FLICKR_USER_ID: ${{secrets.FLICKR_USER_ID}}
         run: |
-          cd profile && pnpm i && pnpm build && cd ..
+          cd profile && yarn && yarn build && cd ..
 
       - name: Move favicon to correct location
         run: mv public_source/favicon.ico profile/dist
