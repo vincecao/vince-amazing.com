@@ -1,0 +1,27 @@
+{
+  "plugins": [
+    [
+      "prismjs",
+      {
+        "languages": [
+          "javascript",
+          "typescript",
+          "java",
+          "bash",
+          "css",
+          "json",
+          "cshtml",
+          "xml-doc",
+          "yml",
+          "ruby",
+          "kotlin",
+          "ini",
+          "markup",
+          "go"
+        ],
+        "theme": "tomorrow",
+        "css": true
+      }
+    ]
+  ]
+}

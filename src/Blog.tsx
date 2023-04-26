@@ -27,7 +27,7 @@ function Blog(): ReactElement {
 
   if (!postId)
     return (
-      <div className="flex flex-col items-start py-8 md:py-24 space-y-3 px-5 font-['Noto_Serif']">
+      <div className="flex flex-col items-start py-8 md:py-24 space-y-3 px-5 font-sans font-extralight">
         {list.map((element) => (
           <Link key={element[0]} element={element} />
         ))}

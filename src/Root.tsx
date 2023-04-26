@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import Prism from "prismjs";
+import React from "react";
 import Button from "./commons/Button";
 import { useAppearance } from "@vincecao/use-tools";
 import classNames from "classnames";
@@ -9,20 +8,6 @@ import usePathnameWithTop from "./hooks/usePathnameWithTop";
 
 import resumeSource from "url:/assets/resources/resume/Resume_10_22_2022.pdf";
 
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-java";
-import "prismjs/components/prism-bash";
-import "prismjs/components/prism-css";
-import "prismjs/components/prism-json";
-import "prismjs/components/prism-go";
-import "prismjs/components/prism-cshtml";
-import "prismjs/components/prism-xml-doc";
-import "prismjs/components/prism-yaml";
-import "prismjs/components/prism-ruby";
-import "prismjs/components/prism-kotlin";
-import "prismjs/components/prism-ini";
-
 function Root(): React.ReactElement {
   const { toggleAppearance } = useAppearance();
   const { isDark } = useStyles();
@@ -30,10 +15,6 @@ function Root(): React.ReactElement {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const itemClassNames = "font-['Mansalva'] cursor-pointer link-text duration-75 transition";
-
-  useEffect(() => {
-    Prism.highlightAll();
-  }, []);
 
   usePathnameWithTop();
 
