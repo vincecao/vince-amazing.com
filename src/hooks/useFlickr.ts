@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { usePromiseState } from "@vincecao/use-tools";
-import { ofetch } from 'ofetch'
+import { ofetch } from "ofetch";
 
 const api_key = process.env.REACT_APP_FLICKR_API_KEY;
 const user_id = process.env.REACT_APP_FLICKR_USER_ID;
@@ -8,6 +8,7 @@ const user_id = process.env.REACT_APP_FLICKR_USER_ID;
 const FILTER_REST_URL = "https://www.flickr.com/services/rest/" as string;
 
 export type PhotoSrc = {
+  id: string;
   h: PhotoSpec;
   l: PhotoSpec;
   c: PhotoSpec;
@@ -37,7 +38,7 @@ interface FlickrPhoto {
   url_c: string; // Medium 800
   height_c: number;
   width_c: number;
-};
+}
 
 type Response = { photos: { photo: FlickrPhoto[] } };
 
@@ -67,11 +68,11 @@ async function getPhotos(page: number) {
 }
 
 function imageMapper(photo: FlickrPhoto) {
-  const { url_h, height_h, width_h, url_l, height_l, width_l, url_c, height_c, width_c } = photo;
+  const { id, url_h, height_h, width_h, url_l, height_l, width_l, url_c, height_c, width_c } = photo;
   const h = { height: height_h, width: width_h, url: url_h };
   const l = { height: height_l, width: width_l, url: url_l };
   const c = { height: height_c, width: width_c, url: url_c };
-  return { h, l, c };
+  return { id, h, l, c };
 }
 
 export async function getPublicPhotos(): Promise<PhotoSrc[]> {
