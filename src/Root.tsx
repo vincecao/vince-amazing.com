@@ -19,7 +19,7 @@ function Root(): React.ReactElement {
   usePathnameWithTop();
 
   return (
-    <div className={classNames()}>
+    <>
       <span className="fixed bottom-5 right-5 z-50">
         <Button onClick={toggleAppearance} className="font-['Mansalva'] text-lg link-text" text={!isDark ? "dark mode" : "light mode"} />
       </span>
@@ -40,7 +40,7 @@ function Root(): React.ReactElement {
       </span>
 
       <Outlet />
-    </div>
+    </>
   );
 }
 

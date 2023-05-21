@@ -25,15 +25,21 @@ function Blog(): ReactElement {
       .sort(([, { date: dateOne, title: titleOne }], [, { date: dateTwo, title: titleTwo }]) => dateTwo.getTime() - dateOne.getTime() || titleOne.localeCompare(titleTwo));
   }, []);
 
-  if (!postId)
-    return (
-      <div className="flex flex-col items-start py-8 md:py-24 space-y-3 px-5 font-sans font-extralight">
-        {list.map((element) => (
-          <Link key={element[0]} element={element} />
-        ))}
+  return (
+    <div className="h-full w-full flex flex-col items-center">
+      <div className="flex-1 space-y-3 p-10 pr-16 font-sans font-extralight w-full md:w-2/3">
+        {!postId ? (
+          <>
+            {list.map((element) => (
+              <Link key={element[0]} element={element} />
+            ))}
+          </>
+        ) : (
+          <Outlet />
+        )}
       </div>
-    );
-  return <Outlet />;
+    </div>
+  );
 }
 
 export default memo(Blog);

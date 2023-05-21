@@ -11,6 +11,13 @@ module.exports = {
         serif: ['Vollkorn'],
         sans: ['Noto Sans', 'sans-serif'],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: 'w-full',
+          }
+        }
+      }
     },
   },
   variants: {

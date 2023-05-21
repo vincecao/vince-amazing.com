@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { usePromiseState } from "@vincecao/use-tools";
 import { ofetch } from "ofetch";
+import { encodeImageHash } from "../helpers/blurhash";
 
 const api_key = process.env.REACT_APP_FLICKR_API_KEY;
 const user_id = process.env.REACT_APP_FLICKR_USER_ID;
@@ -49,7 +50,7 @@ async function getAllPhotos(key: string, limitedNumPages?: number) {
   do {
     page++;
     const imgs = await getPhotos(page);
-    const { photo, pages } = (imgs as any)[key];
+    const { photo, pages } = (imgs as any)[key] as { photo: FlickrPhoto[]; pages: number };
     totalImgs = totalImgs.concat(photo);
     totalPages = pages;
   } while (page < (limitedNumPages || totalPages));
@@ -80,6 +81,7 @@ export async function getPublicPhotos(): Promise<PhotoSrc[]> {
     const totalImgs = await getAllPhotos("photos");
     return totalImgs.map(imageMapper);
   } catch (e) {
+    console.error(e);
     throw new Error(`GetPublicPhotosPromise failed ${e}`);
   }
 }
