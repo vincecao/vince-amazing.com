@@ -19,7 +19,7 @@
           "markup",
           "go"
         ],
-        "theme": "tomorrow",
+        "theme": "nord",
         "css": true
       }
     ]

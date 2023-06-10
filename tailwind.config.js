@@ -7,7 +7,7 @@ module.exports = {
       fontFamily: {
         chinesename: ['CloudKaiXingGBK'],
         englishname: ['Mansalva'],
-        mono: ['Courier Prime'],
+        mono: ['0xProto'],
         serif: ['Vollkorn'],
         sans: ['Noto Sans', 'sans-serif'],
       },

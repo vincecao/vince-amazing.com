@@ -39,6 +39,7 @@
   },
   "scripts": {
     "start": "parcel --https",
-    "build": "parcel build"
+    "build": "parcel build",
+    "download-prismjs-theme": "curl -o node_modules/prismjs/themes/prism-nord.css https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-nord.css"
   }
 }

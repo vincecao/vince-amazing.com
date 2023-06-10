@@ -48,6 +48,14 @@
   font-style: oblique;
 }
 
+
+@font-face {
+  font-family: '0xProto';
+  src: url('./assets/fonts/0xProto-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @tailwind base;
 
 @tailwind components;
@@ -81,4 +89,9 @@ html, body, #root {
 
 .link-text {
   @apply hover:text-red-800 dark:hover:text-red-300
+}
+
+pre[class*="language-"], code {
+  font-family: '0xProto' !important;
+  font-size: 0.9em !important;
 }
