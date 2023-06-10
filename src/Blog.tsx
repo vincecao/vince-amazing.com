@@ -26,8 +26,8 @@ function Blog(): ReactElement {
   }, []);
 
   return (
-    <div className="h-full w-full flex flex-col items-center">
-      <div className="flex-1 space-y-3 p-10 pr-16 font-sans font-extralight w-full md:w-2/3">
+    <div className="overflow-auto p-10 pr-16 font-sans font-extralight w-full">
+      <div className="w-full md:w-2/3 space-y-3 mx-auto">
         {!postId ? (
           <>
             {list.map((element) => (
