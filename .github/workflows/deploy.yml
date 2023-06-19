@@ -20,10 +20,10 @@ jobs:
           REACT_APP_FLICKR_PHOTOSETS_ID: ${{secrets.FLICKR_PHOTOSETS_ID}}
           REACT_APP_FLICKR_USER_ID: ${{secrets.FLICKR_USER_ID}}
         run: |
-          yarn
+          pnpm i
           # Download nord theme
-          yarn download-prismjs-theme
-          yarn build
+          pnpm download-prismjs-theme
+          pnpm build
 
       - name: Move favicon, and 404 page to correct location
         run: |

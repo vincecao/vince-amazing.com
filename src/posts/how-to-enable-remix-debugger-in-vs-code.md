@@ -3,8 +3,6 @@ title: How to enable Remix Server-side and Client-side Debugger in Vscode
 date: 2023-05-26 18:37:35
 ---
 
-## Enable Server-side code debugger
-
 1. Open editor commands, `cmd + shift + p`, (or `ctrl + shift + p` from Windows and Linux machine).
 
 2. Search `debug npm script`, and select the `dev` script or what ever scripts you like in `package.json`.
