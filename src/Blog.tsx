@@ -26,7 +26,7 @@ function Blog(): ReactElement {
   }, []);
 
   return (
-    <div className="overflow-auto p-10 pr-16 font-sans font-extralight w-full">
+    <div className="p-10 pr-16 font-sans font-extralight w-full">
       <div className="w-full md:w-2/3 space-y-3 mx-auto">
         {!postId ? (
           <>

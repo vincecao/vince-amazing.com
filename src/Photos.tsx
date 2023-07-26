@@ -1,12 +1,8 @@
 import { useShuffle } from "@vincecao/use-tools";
-import { Blurhash } from "react-blurhash";
-import { shallow } from "zustand/shallow";
-import React, { ReactElement, useMemo, useState, useEffect, useRef } from "react";
+import React, { ReactElement, useMemo, useState } from "react";
 import { memo } from "react";
 import Button from "./commons/Button";
 import useFlickr, { PhotoSrc } from "./hooks/useFlickr";
-import { useWindows, useWindowsDimensions } from "./hooks/useWindows";
-import { encodeImageHash } from "./helpers/blurhash";
 
 function Photos(): ReactElement {
   const [photos, { status }] = useFlickr();
@@ -14,7 +10,7 @@ function Photos(): ReactElement {
   const shuffledPhotos = useShuffle(useMemo(() => (photos ? [...photos] : []), [photos, shuffleVariant]));
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center self-center">
       {status === "pending" ? (
         <div className="font-['Mansalva']">Loading...</div>
       ) : (

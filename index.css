@@ -95,3 +95,7 @@ pre[class*="language-"], code {
   font-family: '0xProto' !important;
   font-size: 0.9em !important;
 }
+
+.self-center {
+  @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2
+}

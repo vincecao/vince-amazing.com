@@ -22,7 +22,7 @@ function Welcome(): React.ReactElement {
   return (
     <>
       {showBg && <BlurBackground url={`https://live.staticflickr.com/${showBg}.jpg`} />}
-      <div className="space-x-5 flex items-center justify-center">
+      <div className="space-x-5 flex items-center self-center">
         <Avatar onMouseEnter={() => setShowBg(BACKDROP_IMAGE_IDS[Math.floor(Math.random() * BACKDROP_IMAGE_IDS.length)])} onMouseLeave={() => setShowBg(false)} />
         <span className="text-3xl font-englishname">
           Lineng <b>Cao</b>
