@@ -22,9 +22,6 @@ function Root(): React.ReactElement {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.set("#profile-name", {
-        clipPath: "circle(150% at 10% 90%)",
-      });
       gsap
         .timeline({
           default: {

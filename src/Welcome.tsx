@@ -45,7 +45,7 @@ function Welcome(): ReactElement {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       gsap.set("#profile-name", {
-        clipPath: "circle(150% at 10% 90%)",
+        clipPath: "circle(150% at 10% 50%)",
       });
       gsap
         .timeline({
@@ -59,8 +59,8 @@ function Welcome(): ReactElement {
           autoAlpha: 0,
         })
         .from("#profile-name", {
-          clipPath: "circle(0% at 10% 90%)",
-          duration: 1,
+          clipPath: "circle(0% at 10% 50%)",
+          duration: 1.5,
         });
     });
     return () => ctx.revert();

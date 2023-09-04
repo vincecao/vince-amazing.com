@@ -14,9 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
+      # - uses: pnpm/action-setup@v2
+      #   with:
+      #     version: 7
+
+      - uses: actions/setup-node@v3
       
       - name: Build
         env:
@@ -24,13 +26,6 @@ jobs:
           REACT_APP_FLICKR_PHOTOSETS_ID: ${{secrets.FLICKR_PHOTOSETS_ID}}
           REACT_APP_FLICKR_USER_ID: ${{secrets.FLICKR_USER_ID}}
         run: |
-          pnpm i
-          # Download nord theme
-          pnpm download-prismjs-theme
-          pnpm build
-
-      - name: Move favicon, and 404 page to correct location
-        run: |
-          mv favicon.ico dist
-          mv 404.html dist
+          npm i
+          npm run build
 
