@@ -7,8 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  publish:   # disable for now
-    if: ${{ false }}
+  publish:
     runs-on: ubuntu-latest
     
     steps:
@@ -35,12 +34,3 @@ jobs:
           mv favicon.ico dist
           mv 404.html dist
 
-      - name: Deploy to GitHub Pages
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v2
-        with:
-          target_branch: gh-pages
-          build_dir: dist
-          keep_history: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,5 @@
 /node_modules
 /dist
+/assets/preserved/imgs/backdrops/*
 .parcel-cache
 .env

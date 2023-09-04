@@ -1,5 +1,6 @@
-import React, { type ReactElement } from "react";
+import React, { useLayoutEffect, type ReactElement } from "react";
 import { memo, useMemo } from "react";
+import gsap from "gsap";
 import { format, isValid } from "date-fns";
 import { Link as RouterLink, Outlet, useParams } from "react-router-dom";
 import { createPostEntry, type PostElement } from "./helpers/markdown";
@@ -19,6 +20,24 @@ const Link = memo(({ element: [postId, postEntry] }: { element: PostElement }) =
 function Blog(): ReactElement {
   const { postId } = useParams<{ postId: string | undefined }>();
 
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap
+        .timeline({
+          default: {
+            ease: "power2",
+          },
+        })
+        .from("#posts-list a", {
+          y: "10px",
+          autoAlpha: 0,
+          stagger: 0.05,
+          delay: 1.3,
+        });
+    });
+    return () => ctx.revert();
+  }, []);
+
   const list = useMemo<PostElement[]>(() => {
     return Object.entries(posts)
       .map(([postPath, postFile]: any) => [postPath.replace(".md", ""), createPostEntry(postFile.default)] as PostElement)
@@ -27,7 +46,7 @@ function Blog(): ReactElement {
 
   return (
     <div className="p-10 pr-16 font-sans font-extralight w-full">
-      <div className="w-full md:w-2/3 space-y-3 mx-auto">
+      <div id="posts-list" className="w-full md:w-2/3 space-y-3 mx-auto">
         {!postId ? (
           <>
             {list.map((element) => (

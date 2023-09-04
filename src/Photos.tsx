@@ -72,8 +72,8 @@ const BlurhashBackground = memo(({ hash }: { hash: string }) => {
 });
 */
 
-export const BlurBackground = memo(({ url }: { url: string }) => {
-  return <div className="fixed top-0 bottom-0 left-0 right-0 z-[-1] bg-no-repeat bg-cover blur-[80px] bg-center" style={{ backgroundImage: `url(${url})` }}></div>;
+export const BlurBackground = memo(({ url }: { url?: string }) => {
+  return <div className="transition-all duration-300 fixed top-0 bottom-0 left-0 right-0 z-[-1] bg-no-repeat bg-cover blur-[80px] bg-center" style={{ backgroundImage: url ? `url(${url})` : "none" }}></div>;
 });
 
 export default memo(Photos);
