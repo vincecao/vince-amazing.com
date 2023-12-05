@@ -3,3 +3,4 @@
 /assets/preserved/imgs/backdrops/*
 .parcel-cache
 .env
+*/**/.DS_Store
