@@ -254,9 +254,10 @@ eval "$(ssh-agent -s)" #Agent pid 59566
 
 ssh-add ~/.ssh/id_rsa
 
-#3. Adding a new SSH key
-#install xclip or manual copy from /.ssh/
-xclip -sel clip < ~/.ssh/id_rsa.pub
+#3. Adding a new SSH key from /.ssh
+cat ~/.ssh/id_rsa.pub | pbcopy
+#or install xclip to copy
+#xclip -sel clip < ~/.ssh/id_rsa.pub
 
 # Github -> Settings -> SSH and GPG keys. -> New SSH key or Add SSH key.
 
