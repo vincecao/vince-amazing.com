@@ -88,7 +88,7 @@ html, body, #root {
 }
 
 .link-text {
-  @apply hover:text-red-800 dark:hover:text-red-300
+  @apply hover:text-red-800 dark:hover:text-red-300 transition-colors duration-300 ease-in-out
 }
 
 pre[class*="language-"], code {

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import { BlurBackground } from "./Photos";
 import useStyles from "./hooks/useStyles";
-import BACKDROP_IMAGE_IDS from "./consts/backdrop-image-ids.json";
+import { useBackgroundActions } from "./stores/background-store";
 
 import avatarSource from "url:/assets/imgs/avatar.png?as=webp";
 
@@ -62,9 +62,7 @@ const Avatar = memo(({ className }: { className?: string }) => {
 });
 
 function Welcome(): ReactElement {
-  const [showBg, setShowBg] = useState<false | string>(false);
-  const onMouseEnter = () => setShowBg(BACKDROP_IMAGE_IDS[Math.floor(Math.random() * BACKDROP_IMAGE_IDS.length)]);
-  const onMouseLeave = () => setShowBg(false);
+  const { setRandomBackground, setBackground } = useBackgroundActions();
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -92,8 +90,8 @@ function Welcome(): ReactElement {
 
   return (
     <>
-      <BlurBackground url={showBg ? `/assets/preserved/imgs/backdrops/${showBg.replace(/\//g, "-")}.jpg` : undefined} />
-      <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} type="button" id="profile-div" className="space-x-5 flex items-center self-center cursor-pointer" onClick={() => window.open("https://github.com/vincecao", "_blank")}>
+      <BlurBackground />
+      <button onMouseEnter={setRandomBackground} onMouseLeave={() => setBackground(null)} type="button" id="profile-div" className="space-x-5 flex items-center self-center cursor-pointer" onClick={() => window.open("https://github.com/vincecao", "_blank")}>
         <Avatar />
         <span id="profile-name" className="text-3xl font-englishname">
           Lineng <b>Cao</b>
