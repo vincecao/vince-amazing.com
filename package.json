@@ -1,5 +1,5 @@
 {
-  "name": "parcel-react-template",
+  "name": "vince-amazing.com",
   "version": "1.0.0",
   "author": "Lineng Cao",
   "source": "./index.html",
@@ -14,7 +14,6 @@
     "gsap": "^3.12.2",
     "marked": "^8.0.0",
     "ofetch": "^1.0.1",
-    "ohmyfetch": "^0.4.21",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-blurhash": "^0.3.0",
@@ -44,7 +43,7 @@
     "util": "^0.12.3"
   },
   "scripts": {
-    "start": "npm run build:download-backdrop-images && npm run build:download-prismjs-theme && parcel --https",
+    "start": "pnpm run build:download-backdrop-images && pnpm run build:download-prismjs-theme && parcel --https",
     "build:download-prismjs-theme": "curl -o node_modules/prismjs/themes/prism-nord.css https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-nord.css",
     "build:download-backdrop-images": "node deploy-scripts/image-download.js",
     "build:parcel": "parcel build",
