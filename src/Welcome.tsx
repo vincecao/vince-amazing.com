@@ -10,18 +10,40 @@ import BACKDROP_IMAGE_IDS from "./consts/backdrop-image-ids.json";
 
 import avatarSource from "url:/assets/imgs/avatar.png?as=webp";
 
-const Avatar = memo(({ className, onMouseEnter, onMouseLeave }: { className?: string; onMouseEnter: () => void; onMouseLeave: () => void }) => {
+const Avatar = memo(({ className }: { className?: string }) => {
   const { boxShadow } = useStyles();
+  const [disableYoyo, setDisableYoyo] = useState(false);
   return (
     <motion.button
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      style={{ x: 0, y: 0, boxShadow: boxShadow.INITIAL }}
+      style={{ x: 0, y: 0, boxShadow: boxShadow.INITIAL, background: "radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)" }}
+      animate={
+        disableYoyo
+          ? {}
+          : {
+              scale: [1, 1.05, 1],
+              y: [0, -8, 0],
+              rotate: [-3, 3, -3],
+            }
+      }
+      transition={
+        disableYoyo
+          ? {}
+          : {
+              duration: 2.5,
+              repeat: Infinity,
+              type: "spring",
+              bounce: 0.5,
+            }
+      }
       whileHover={{
         x: 2,
         y: 2,
         boxShadow: boxShadow.HOVER,
-        transition: { duration: 0.04 },
+        transition: {
+          type: "spring",
+          stiffness: 300,
+          damping: 10,
+        },
       }}
       whileTap={{
         x: 3.5,
@@ -31,8 +53,10 @@ const Avatar = memo(({ className, onMouseEnter, onMouseLeave }: { className?: st
         opacity: 0.8,
       }}
       className={classNames("rounded-full", className)}
+      onHoverStart={() => setDisableYoyo(true)}
+      onHoverEnd={() => setDisableYoyo(false)}
     >
-      <img src={avatarSource} alt="avatar" className="w-12 h-12 rounded-full" onClick={() => window.open("https://github.com/vincecao")} />
+      <img src={avatarSource} alt="avatar" className="w-12 h-12 rounded-full" />
     </motion.button>
   );
 });
@@ -69,12 +93,12 @@ function Welcome(): ReactElement {
   return (
     <>
       <BlurBackground url={showBg ? `/assets/preserved/imgs/backdrops/${showBg.replace(/\//g, "-")}.jpg` : undefined} />
-      <div id="profile-div" className="space-x-5 flex items-center self-center">
-        <Avatar onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
+      <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} type="button" id="profile-div" className="space-x-5 flex items-center self-center cursor-pointer" onClick={() => window.open("https://github.com/vincecao", "_blank")}>
+        <Avatar />
         <span id="profile-name" className="text-3xl font-englishname">
           Lineng <b>Cao</b>
         </span>
-      </div>
+      </button>
     </>
   );
 }

@@ -8,7 +8,7 @@ import Button from "./commons/Button";
 import useStyles from "./hooks/useStyles";
 import usePathnameWithTop from "./hooks/usePathnameWithTop";
 
-import resumeSource from "url:/assets/resources/resume/Resume_12_04_2023_trimmed.pdf";
+import resumeSource from "url:/assets/resources/resume/Resume_02_17_2025.pdf";
 
 function Root(): React.ReactElement {
   const { toggleAppearance } = useAppearance();
