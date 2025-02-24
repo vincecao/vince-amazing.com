@@ -9,7 +9,7 @@ import useStyles from "./hooks/useStyles";
 import usePathnameWithTop from "./hooks/usePathnameWithTop";
 import { useBackgroundActions } from "./stores/background-store";
 
-import resumeSource from "url:/assets/resources/resume/Resume_02_17_2025.pdf";
+import resumeSource from "url:/assets/resources/resume/Resume_02_23_2025.pdf";
 
 function Root(): React.ReactElement {
   const { setRandomBackground, setBackground } = useBackgroundActions();
@@ -48,10 +48,10 @@ function Root(): React.ReactElement {
   return (
     <>
       <span id="theme-mode-btn-span" className="fixed bottom-5 right-5 z-50">
-        <Button onClick={toggleAppearance} className="font-['Mansalva'] text-lg link-text" text={!isDark ? "dark mode" : "light mode"} />
+        <Button onClick={toggleAppearance} className={classNames("font-['Mansalva'] text-lg link-text p-1 -m-1", { "rounded-full backdrop-blur-sm": true })} text={!isDark ? "dark mode" : "light mode"} />
       </span>
 
-      <span id="side-nav" className="fixed top-8 right-8 md:text-2xl [writing-mode:vertical-lr] space-y-5 z-50" onMouseEnter={setRandomBackground} onMouseLeave={() => setBackground(null)}>
+      <span id="side-nav" className={classNames("fixed top-8 right-8 md:text-2xl [writing-mode:vertical-lr] space-y-5 z-50 p-1 -m-1", { "rounded-full backdrop-blur-sm": !pathname.startsWith("/blog") })} onMouseEnter={setRandomBackground} onMouseLeave={() => setBackground(null)}>
         <span className="font-chinesename cursor-pointer text-xl md:text-3xl" onClick={() => navigate("/")}>
           <b>曹</b> 立能
         </span>
