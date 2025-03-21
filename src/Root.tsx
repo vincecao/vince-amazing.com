@@ -55,7 +55,7 @@ function Root(): React.ReactElement {
         <span className="font-chinesename cursor-pointer text-xl md:text-3xl" onClick={() => navigate("/")}>
           <b>曹</b> 立能
         </span>
-        {["/photos", "/blog"].map((link) => (
+        {["/blog"].map((link) => (
           <Link className={itemClassNames(link)} to={link}>
             {link}
           </Link>
