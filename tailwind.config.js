@@ -1,32 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,ts,tsx,js,jsx}', './index.html', './index.tsx'],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
-        chinesename: ['CloudKaiXingGBK'],
-        englishname: ['Mansalva'],
-        mono: ['0xProto'],
-        serif: ['Vollkorn'],
-        sans: ['Noto Sans', 'sans-serif'],
+        chinese: ["CloudKaiXingGBK"],
+        english: ["Mansalva"],
+        mono: ["0xProto"],
+        serif: ["Vollkorn"],
+        sans: ["Noto Sans", "sans-serif"],
       },
       typography: {
         DEFAULT: {
           css: {
-            maxWidth: 'w-full',
-          }
-        }
-      }
+            maxWidth: "w-full",
+          },
+        },
+      },
     },
   },
   variants: {
-    opacity: ['hover', 'disabled', 'focus'],
-    cursor: ['hover', 'disabled', 'focus'],
+    opacity: ["hover", "disabled", "focus"],
+    cursor: ["hover", "disabled", "focus"],
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require("@tailwindcss/typography")],
   corePlugins: {
     float: false,
   },

@@ -1,6 +1,34 @@
-/node_modules
-/dist
+# prod
+out/
+
+# dev
+.next/
+.yarn/
+!.yarn/releases
+.vscode/*
+!.vscode/launch.json
+!.vscode/*.code-snippets
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf
+
 /assets/preserved/imgs/backdrops/*
-.parcel-cache
+
+# deps
+node_modules/
+
+# env
 .env
-*/**/.DS_Store
+.env.production
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# misc
+.DS_Store
