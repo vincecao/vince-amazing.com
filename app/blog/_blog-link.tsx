@@ -1,4 +1,4 @@
-import { PostElement } from '@/helpers/markdown';
+import { PostElement } from '@/app/blog/_util';
 import { format, isValid } from 'date-fns';
 import Link from 'next/link';
 import { useMemo, memo } from 'react';

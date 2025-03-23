@@ -1,12 +1,7 @@
-import { getAllPosts } from '@/helpers/markdown';
+import { getAllPosts } from '@/app/blog/_util';
 import Posts from './_posts';
 
-async function loader() {
+export default async function Blog() {
   const posts = await getAllPosts();
-  return posts;
-}
-
-export default async function RootLayout() {
-  const posts = await loader();
   return !posts ? null : <Posts posts={posts} />;
 }

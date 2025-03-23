@@ -3,7 +3,7 @@
 import React, { useLayoutEffect, type ReactElement } from 'react';
 import { memo } from 'react';
 import gsap from 'gsap';
-import { type PostElement } from '@/helpers/markdown';
+import { type PostElement } from '@/app/blog/_util';
 import BlogLink from './_blog-link';
 
 function Blog({ posts }: { posts: PostElement[] }): ReactElement {

@@ -2,6 +2,18 @@
 
 import fs from 'fs';
 import path from 'path';
+import { createClient } from 'redis';
+
+const POSTS_DIR = path.join(process.cwd(), 'app/blog/_posts');
+const CACHE_TTL = 60 * 60 * 24 * 5; // 5 days in seconds
+
+// Initialize Redis client
+const redis = createClient({
+  url: process.env.REDIS_URL || 'redis://localhost:6379'
+});
+
+// Connect to Redis
+redis.connect().catch(console.error);
 
 export interface PostEntry {
   title: string;
@@ -20,8 +32,6 @@ function createPostEntry(str: string): PostEntry {
   const date = dateStr ? new Date(dateStr) : new Date();
   return { title, date, body };
 }
-
-const POSTS_DIR = path.join(process.cwd(), 'app/blog/_posts');
 
 function getPost(postId: string) {
   try {
@@ -57,14 +67,29 @@ function getPosts() {
 
 export async function getAllPosts(): Promise<PostElement[]> {
   try {
+    // Try to get posts from Redis cache first
+    const cacheKey = 'blog:all_posts';
+    const cachedPosts = await redis.get(cacheKey);
+    if (cachedPosts) {
+      return JSON.parse(cachedPosts);
+    }
+
+    // If not in cache, get from filesystem
     const rawPosts = getPosts();
-    return rawPosts
+    const posts = rawPosts
       .map((post) => [post.key, createPostEntry(post.content)] as PostElement)
       .sort((a: PostElement, b: PostElement) => {
         const [, postOne] = a;
         const [, postTwo] = b;
         return postTwo.date.getTime() - postOne.date.getTime() || postOne.title.localeCompare(postTwo.title);
       });
+
+    // Cache the results in Redis
+    await redis.set(cacheKey, JSON.stringify(posts), {
+      EX: CACHE_TTL
+    });
+
+    return posts;
   } catch (error) {
     console.error('Error loading posts:', error);
     return [];
@@ -73,10 +98,38 @@ export async function getAllPosts(): Promise<PostElement[]> {
 
 export async function getPostById(postId: string): Promise<PostEntry | null> {
   try {
+    // Try to get post from Redis cache first
+    const cacheKey = `blog:post:${postId}`;
+    const cachedPost = await redis.get(cacheKey);
+    if (cachedPost) {
+      return JSON.parse(cachedPost);
+    }
+
+    // If not in cache, get from filesystem
     const content = getPost(postId);
-    return createPostEntry(content);
+    const post = createPostEntry(content);
+
+    // Cache the result in Redis
+    await redis.set(cacheKey, JSON.stringify(post), {
+      EX: CACHE_TTL
+    });
+
+    return post;
   } catch (error) {
     console.error('Error loading post:', error);
     return null;
+  }
+}
+
+export async function invalidateBlogCache(): Promise<void> {
+  try {
+    // Delete all blog-related cache entries
+    const keys = await redis.keys('blog:*');
+    if (keys.length > 0) {
+      await redis.del(keys);
+      console.log(`Cleared ${keys.length} blog cache entries`);
+    }
+  } catch (error) {
+    console.error('Error invalidating blog cache:', error);
   }
 }

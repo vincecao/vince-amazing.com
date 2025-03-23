@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "pnpm run build:download-prismjs-theme && next dev",
     "build:download-prismjs-theme": "curl -o node_modules/prismjs/themes/prism-nord.css https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-nord.css",
+    "build:invalidate-cache": "tsx scripts/invalidate-cache.ts",
     "build:nextjs": "next build",
     "build": "run-s build:*",
     "start": "next start",
@@ -12,6 +13,7 @@
     "@vincecao/animated-in-view": "^0.3.4",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
+    "dompurify": "^3.2.4",
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
     "hono": "^4.7.5",
@@ -37,6 +39,7 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^3.2.7",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "^5"
   }
 }

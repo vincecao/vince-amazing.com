@@ -55,7 +55,7 @@ function Nav() {
         className={classNames('fixed top-8 right-8 md:text-2xl [writing-mode:vertical-lr] space-y-5 z-50 p-1 -m-1', {
           'rounded-full backdrop-blur-sm': !pathname.startsWith('/blog'),
         })}
-        onMouseEnter={setRandomBackground}
+        onMouseEnter={pathname === '/' ? setRandomBackground : () => {}}
         onMouseLeave={() => setBackground(null)}
       >
         <Link href="/" className="font-chinese cursor-pointer text-xl md:text-3xl">

@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import gsap from 'gsap';
 import { motion } from 'framer-motion';
 
-import BlurBackground from './photos/_bg';
 import useStyles from '@/hooks/use-styles';
 import { useBackgroundActions } from '@/helpers/background-store';
 
@@ -96,21 +95,18 @@ function Name(): ReactElement {
   }, []);
 
   return (
-    <>
-      <BlurBackground />
-      <div
-        onMouseEnter={setRandomBackground}
-        onMouseLeave={() => setBackground(null)}
-        id="profile-div"
-        className="space-x-5 flex items-center self-center cursor-pointer"
-        onClick={() => window.open('https://github.com/vincecao', '_blank')}
-      >
-        <Avatar />
-        <span id="profile-name" className="text-3xl font-english">
-          Lineng <b>Cao</b>
-        </span>
-      </div>
-    </>
+    <div
+      onMouseEnter={setRandomBackground}
+      onMouseLeave={() => setBackground(null)}
+      id="profile-div"
+      className="space-x-5 flex items-center self-center cursor-pointer"
+      onClick={() => window.open('https://github.com/vincecao', '_blank')}
+    >
+      <Avatar />
+      <span id="profile-name" className="text-3xl font-english">
+        Lineng <b>Cao</b>
+      </span>
+    </div>
   );
 }
 
