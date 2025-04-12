@@ -8,9 +8,7 @@ const POSTS_DIR = path.join(process.cwd(), 'app/blog/_posts');
 const CACHE_TTL = 60 * 60 * 24 * 5; // 5 days in seconds
 
 // Initialize Redis client
-const redis = createClient({
-  url: process.env.REDIS_URL || 'redis://localhost:6379'
-});
+const redis = createClient({ url: process.env.REDIS_URL });
 
 // Connect to Redis
 redis.connect().catch(console.error);
@@ -86,7 +84,7 @@ export async function getAllPosts(): Promise<PostElement[]> {
 
     // Cache the results in Redis
     await redis.set(cacheKey, JSON.stringify(posts), {
-      EX: CACHE_TTL
+      EX: CACHE_TTL,
     });
 
     return posts;
@@ -111,25 +109,12 @@ export async function getPostById(postId: string): Promise<PostEntry | null> {
 
     // Cache the result in Redis
     await redis.set(cacheKey, JSON.stringify(post), {
-      EX: CACHE_TTL
+      EX: CACHE_TTL,
     });
 
     return post;
   } catch (error) {
     console.error('Error loading post:', error);
     return null;
-  }
-}
-
-export async function invalidateBlogCache(): Promise<void> {
-  try {
-    // Delete all blog-related cache entries
-    const keys = await redis.keys('blog:*');
-    if (keys.length > 0) {
-      await redis.del(keys);
-      console.log(`Cleared ${keys.length} blog cache entries`);
-    }
-  } catch (error) {
-    console.error('Error invalidating blog cache:', error);
   }
 }

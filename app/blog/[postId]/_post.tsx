@@ -4,7 +4,7 @@ import { PostEntry } from '@/app/blog/_util';
 import { AnimatedGsapDiv } from '@vincecao/animated-in-view';
 import { format, isValid } from 'date-fns';
 import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+import DOMPurify from "isomorphic-dompurify";
 import Prism from 'prismjs';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-javascript';
@@ -16,7 +16,7 @@ import 'prismjs/components/prism-css';
 import { useMemo, memo, useLayoutEffect } from 'react';
 
 const Post = ({ post }: { post: PostEntry }) => {
-  const date = useMemo(() => (isValid(post.date) ? format(post.date, 'Pp') : undefined), [post.date]);
+  const date = useMemo(() => (isValid(new Date(post.date)) ? format(post.date, 'Pp') : undefined), [post.date]);
   const html = useMemo(
     () => DOMPurify.sanitize(marked.parse(post.body.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, ''))),
     [post.body]
