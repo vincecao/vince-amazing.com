@@ -32,13 +32,13 @@ function Nav() {
         .from(['#side-nav span', '#side-nav a'], {
           x: '10px',
           autoAlpha: 0,
-          stagger: 0.1,
-          delay: 1.4,
+          stagger: 0.02,
+          delay: 0.5,
         })
         .from('#theme-mode-btn-span', {
           x: '10px',
           autoAlpha: 0,
-          duration: 0.7,
+          duration: 0.5,
         });
     });
     return () => ctx.revert();

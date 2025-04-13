@@ -1,16 +1,14 @@
 ---
 title: My Linux Setup Scripts for Development Environment
-date: 2023-06-19 13:02:42
----
-
-_Scripts are updated on 04/12/2025_
-
+date: 2025-04-12 15:56:00
+categories: Config
 ---
 
 Often, I find that I need to install several dependencies in the correct order for a new Linux sandbox. Below is how I like to configure my local environment. This order allows me to switch the default shell from `bash` to `zsh`, install [mise](https://github.com/jdx/mise) (which provides granular control over development tool versions per project), and log in with GitHub CLI or manually link with SSH to remote Git sources in Bitbucket or GitLab.
 
 I favor this sequence because there are multiple methods to install these packages, but it's crucial to verify that all binary paths are correct and properly set up. Additionally, I can manage the installation of all development tools from a single source.
 
+### OS Tools
 ```bash
 # Install Homebrew first
 # https://brew.sh/
@@ -34,7 +32,10 @@ echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
 # However, it is recommended to use chsh for changing a user's login shell, which also works under Linux and macOS
 echo "/home/linuxbrew/.linuxbrew/bin/zsh" | sudo tee -a /etc/shells # Appends the brew-installed zsh shell to the available shell list
 chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
+```
 
+### Dev Tools
+```bash
 # Install mise (previously called rtx), a tool like nvm that controls development tools and runtimes
 # https://lib.rs/crates/mise
 # https://lib.rs/crates/rtx-cli
@@ -57,17 +58,24 @@ mise x node@22 -- node -v
 
 # Run mise for tasks with mise.toml, using mise run|r
 # https://mise.jdx.dev/cli/run.html
+```
 
-# ---- (Optional) Install GitHub CLI ----
+### Git Options
+
+#### Option 1: GitHub CLI
+```bash
+# Install GitHub CLI
 # https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 brew install gh
 
 # Log in to GitHub CLI
 # https://cli.github.com/manual/gh_auth_login
 gh auth login
+```
 
-# ---- (Optional) Log in to Git with SSH public and private keys ----
-# https://cli.github.com/manual/gh_auth_login
+#### Option 2: Git with SSH
+```bash
+# Generate SSH keys for Git
 ssh-keygen -t rsa -b 4096 -C "lineng.ca@gmail.com" # Replace with your email
 # Enter a file in which to save the key (/home/you/.ssh/id_rsa): [Press enter]
 # Enter passphrase (empty for no passphrase): [Type a passphrase]

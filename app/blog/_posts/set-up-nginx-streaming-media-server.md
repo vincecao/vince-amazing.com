@@ -3,6 +3,7 @@ title: Set up Nginx Streaming Media Server
 date: 2020-03-11 01:13:05
 tags: 
 - Linux
+categories: Config
 ---
 
 This is a tutorial about how to set up a `nginx` + `rtmp-module` server for personal purpose.

@@ -3,7 +3,7 @@
 import React, { useLayoutEffect, type ReactElement } from 'react';
 import { memo } from 'react';
 import gsap from 'gsap';
-import { type PostElement } from '@/app/blog/_util';
+import { type PostElement } from '@/app/blog/_util.server';
 import BlogLink from './_blog-link';
 
 function Blog({ posts }: { posts: PostElement[] }): ReactElement {
@@ -18,8 +18,8 @@ function Blog({ posts }: { posts: PostElement[] }): ReactElement {
         .from('#posts-list a.link-text', {
           y: '10px',
           autoAlpha: 0,
-          stagger: 0.05,
-          delay: 1.3,
+          stagger: 0.02,
+          delay: 0.3,
         });
     });
     return () => ctx.revert();

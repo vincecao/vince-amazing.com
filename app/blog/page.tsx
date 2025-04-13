@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/app/blog/_util';
+import { getAllPosts } from '@/app/blog/_util.server';
 import Posts from './_posts';
 
 export default async function Blog() {

@@ -1,6 +1,7 @@
 ---
-title:  THREE, R3F and R3D
+title:  THREE, R3F and R3D notes
 date: 2023-06-19 13:00:17
+categories: Notes
 ---
 
 This is my learning note for [three.js](https://threejs.org/), [react three fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) and [react three drei](https://github.com/pmndrs/drei#readme).

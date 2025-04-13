@@ -1,18 +1,14 @@
 ---
 title: How to enable Remix Server-side and Client-side Debugger in Vscode
 date: 2023-05-26 18:37:35
+categories: Config
 ---
 
-1. Open editor commands, `cmd + shift + p`, (or `ctrl + shift + p` from Windows and Linux machine).
-
-2. Search `debug npm script`, and select the `dev` script or what ever scripts you like in `package.json`.
-
-3. Close all node running server in terminal for this project, and open Run and Debug (`shift + cmd + d`) from left side panel from vscode.
-
-4. After above step you should have **server-side** debugger attached, and bottom of the vscode editor will show orange, break points in loader and action functions will trigger debugger actions.
-
-5. For first time to run the debugger, add a new configuration from the dropdown input, and it will create `Launch.json` under `.vscode` folder. Add below configuration into the file and save it.
-
+1. Open the command palette by pressing `cmd + shift + p` (or `ctrl + shift + p` on Windows and Linux).
+2. Type `debug npm script` in the search bar, then select the `dev` script or any other script you prefer from your `package.json`.
+3. Terminate any running Node.js servers in the terminal for this project, then navigate to the Run and Debug section by pressing `shift + cmd + d` in the left sidebar of VSCode.
+4. After completing the previous steps, the **server-side** debugger should be attached. The bottom of the VSCode editor will display an orange indicator, and breakpoints in loader and action functions will activate debugger actions.
+5. If this is your first time running the debugger, create a new configuration from the dropdown menu. This will generate a `Launch.json` file in the `.vscode` folder. Add the following configuration to the file and save it.
 ``` json
 {
   "version": "0.2.0",
@@ -27,9 +23,6 @@ date: 2023-05-26 18:37:35
   ]
 }
 ```
-
-6. Choose `Launch Chrome` from previous dropdown input, a chrome browser will be opened and 3000 is initial landing port.
-
-7. You should now have **client-side** debugger also attached.
-
-8. Add more breakpoints and happy coding.
+6. Select `Launch Chrome` from the dropdown menu. This will open a Chrome browser, with the initial landing port set to 3000.
+7. You should now have the **client-side** debugger attached as well.
+8. Feel free to add more breakpoints and enjoy coding!

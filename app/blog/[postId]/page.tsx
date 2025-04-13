@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPostById } from '@/app/blog/_util';
+import { getPostById } from '@/app/blog/_util.server';
 import Post from './_post';
 
 interface PageProps {
