@@ -2,7 +2,7 @@ import React from 'react';
 
 import { getPostById } from '@/app/blog/_utils/server';
 
-import Post from './_components/Main';
+import Post from './_components/Post';
 
 interface PageProps {
   params: {
