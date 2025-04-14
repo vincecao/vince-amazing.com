@@ -30,8 +30,18 @@ function createPostEntry(str: string): PostEntry {
   const title = metas.find((meta) => meta.startsWith('title: '))?.replace('title: ', '') || 'Untitled';
   const dateStr = metas.find((meta) => meta.startsWith('date: '))?.replace('date: ', '');
   const date = dateStr ? new Date(dateStr) : new Date();
-  const tags = metas.find((meta) => meta.startsWith('tags: '))?.replace('tags: ', '').split(',').map(tag => tag.trim()) || [];
-  const categories = metas.find((meta) => meta.startsWith('categories: '))?.replace('categories: ', '').split(',').map(cat => cat.trim()) || [];
+  const tags =
+    metas
+      .find((meta) => meta.startsWith('tags: '))
+      ?.replace('tags: ', '')
+      .split(',')
+      .map((tag) => tag.trim()) || [];
+  const categories =
+    metas
+      .find((meta) => meta.startsWith('categories: '))
+      ?.replace('categories: ', '')
+      .split(',')
+      .map((cat) => cat.trim()) || [];
   return { title, date, body, tags, categories };
 }
 

@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+
+import BlurBackgroundWrapper from './_components/BlurBackgroundWrapper';
+import Navigation from './_components/Navigation';
+import { PostHogProvider } from './_components/PostHogProvider';
+import ThemeToggle from './_components/ThemeToggle';
 import './globals.css';
-import Nav from './_nav';
-import BackgroundWrapper from './_bg-wrapper';
-import { PostHogProvider } from './providers';
 
 export const metadata: Metadata = {
   title: 'LINENG CAO | VINCEC',
@@ -15,11 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="apple-mobile-web-app-title" content="MyWebSite" />
       <body className="bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 font-sans transition-all duration-300">
         <PostHogProvider>
-          <Nav />
-          <BackgroundWrapper />
+          <Navigation />
+          <ThemeToggle />
           {children}
+          <BlurBackgroundWrapper />
         </PostHogProvider>
       </body>
     </html>

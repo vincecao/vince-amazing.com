@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
-import Grids from './_grids';
-import { getPublicPhotos } from '@/helpers/flickr.server';
 
-async function loader() {
+import { getPublicPhotos } from '@/shared/helpers/flickr.server';
+
+import PhotoGrids from './_components/PhotoGrids';
+
+async function fetchPhotos() {
   try {
     return await getPublicPhotos();
   } catch (error) {
@@ -10,15 +12,13 @@ async function loader() {
   }
 }
 
-async function Photos() {
-  const photos = await loader();
+export default async function PhotosPage() {
+  const photos = await fetchPhotos();
   return (
     <div className="flex flex-col w-full items-center self-center">
       <Suspense fallback={<div className="font-['Mansalva']">Loading...</div>}>
-        <Grids photos={photos} />
+        <PhotoGrids photos={photos} />
       </Suspense>
     </div>
   );
 }
-
-export default Photos;

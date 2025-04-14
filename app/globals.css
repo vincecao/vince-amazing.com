@@ -95,7 +95,7 @@ body,
   pre[class*="language-"] {
     @apply font-mono text-[0.9em] bg-[#2E3440] rounded-lg p-4 my-4;
   }
-  
+
   code {
     @apply font-mono text-[0.9em];
   }

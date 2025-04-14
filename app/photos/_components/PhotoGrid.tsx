@@ -1,5 +1,6 @@
-import { useBackgroundActions } from '@/helpers/background-store';
 import { memo } from 'react';
+
+import { useBackgroundActions } from '@/shared/helpers/background-store';
 
 const Grid = ({ id, url }: { id: string; url: string }) => {
   const { setBackground } = useBackgroundActions();

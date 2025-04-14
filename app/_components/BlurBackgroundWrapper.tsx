@@ -1,12 +1,13 @@
 'use client';
 
-import { useBackground, useBackgroundLoading } from '@/helpers/background-store';
-import { AnimatePresence, motion } from 'framer-motion';
 import { memo } from 'react';
 
-const BlurBackground = ({ lowTransition }: { lowTransition?: boolean }) => {
+import { useBackground } from '@/shared/helpers/background-store';
+import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+
+const BlurBackground = memo(({ lowTransition }: { lowTransition?: boolean }) => {
   const background = useBackground();
-  const isLoading = useBackgroundLoading();
 
   return (
     <div className="fixed inset-0 z-[-1] w-screen h-screen top-0 left-0 overflow-hidden">
@@ -23,14 +24,16 @@ const BlurBackground = ({ lowTransition }: { lowTransition?: boolean }) => {
           />
         )}
       </AnimatePresence>
-
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-8 h-8 border-4 border-white/50 border-t-transparent rounded-full animate-spin" />
-        </div>
-      )}
     </div>
   );
-};
+});
 
-export default memo(BlurBackground);
+function BlurBackgroundWrapper() {
+  const pathname = usePathname();
+  const isRoot = pathname === '/';
+  const isPhotos = pathname === '/photos';
+
+  return isRoot || isPhotos ? <BlurBackground lowTransition={isPhotos} /> : null;
+}
+
+export default memo(BlurBackgroundWrapper);

@@ -1,11 +1,12 @@
-import { getCategoryColor } from '@/app/blog/_util';
-import { PostElement } from '@/app/blog/_util.server';
-import useAppearance from '@/hooks/use-appearance';
+import { memo, useMemo } from 'react';
+
+import { getCategoryColor } from '@/app/blog/_utils/client';
+import { PostElement } from '@/app/blog/_utils/server';
+import useAppearance from '@/shared/hooks/use-appearance';
 import { format, isValid } from 'date-fns';
 import Link from 'next/link';
-import { useMemo, memo } from 'react';
 
-const BlogLink = ({ element: [postId, postEntry] }: { element: PostElement }) => {
+const PostEntry = ({ element: [postId, postEntry] }: { element: PostElement }) => {
   const { appearance } = useAppearance();
   const link = useMemo(() => `/blog/${postId}`, [postId]);
   const date = useMemo(
@@ -38,4 +39,4 @@ const BlogLink = ({ element: [postId, postEntry] }: { element: PostElement }) =>
   );
 };
 
-export default memo(BlogLink);
+export default memo(PostEntry);
