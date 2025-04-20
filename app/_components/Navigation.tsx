@@ -31,6 +31,11 @@ function Navigation() {
           x: '10px',
           autoAlpha: 0,
           duration: 0.5,
+        })
+        .from('#source-code-div', {
+          y: '10px',
+          autoAlpha: 0,
+          duration: 0.8,
         });
     });
     return () => ctx.revert();
