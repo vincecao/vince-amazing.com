@@ -8,7 +8,6 @@ import gsap from 'gsap';
 import { usePathname } from 'next/navigation';
 
 import NavigationLink from './NavigationLink';
-import ThemeToggle from './ThemeToggle';
 
 function Navigation() {
   const { setRandomBackground, setBackground } = useBackgroundActions();
@@ -40,13 +39,16 @@ function Navigation() {
   return (
     <span
       id="side-nav"
-      className={classNames('fixed top-8 right-8 md:text-2xl [writing-mode:vertical-lr] space-y-5 z-50 p-1 -m-1', {
-        'rounded-full backdrop-blur-sm': !pathname.startsWith('/blog'),
-      })}
+      className={classNames(
+        'fixed top-4 right-4 md:top-8 md:right-8 md:text-2xl [writing-mode:vertical-lr] space-y-3 md:space-y-5 z-50 p-1 -m-1',
+        {
+          'rounded-full backdrop-blur-sm': !pathname.startsWith('/blog'),
+        }
+      )}
       onMouseEnter={pathname === '/' ? setRandomBackground : () => {}}
       onMouseLeave={() => setBackground(null)}
     >
-      <NavigationLink href="/" className="font-chinese cursor-pointer text-xl md:text-3xl">
+      <NavigationLink href="/" className="font-chinese cursor-pointer text-lg md:text-3xl">
         <b>曹</b> 立能
       </NavigationLink>
       {['/photos', '/blog'].map((link) => (

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import BlurBackgroundWrapper from './_components/BlurBackgroundWrapper';
 import Navigation from './_components/Navigation';
 import { PostHogProvider } from './_components/PostHogProvider';
+import Source from './_components/Source';
 import ThemeToggle from './_components/ThemeToggle';
 import './globals.css';
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <PostHogProvider>
           <Navigation />
           <ThemeToggle />
+          <Source />
           {children}
           <BlurBackgroundWrapper />
         </PostHogProvider>
