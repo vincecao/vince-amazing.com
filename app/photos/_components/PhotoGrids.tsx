@@ -18,13 +18,13 @@ function Grids({ photos }: { photos: PhotoSrc[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
-        {shuffledPhotos.slice(0, 16).map(({ id, l: { url } }) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto md:mt-12">
+        {shuffledPhotos.slice(0, 16).map(({ id, c: { url } }) => (
           <PhotoGrid key={id} id={id} url={url} />
         ))}
       </div>
       <Button
-        className="font-['Mansalva'] m-6 link-text mix-blend-difference dark:text-white text-black text-invert"
+        className="font-['Mansalva'] my-6 link-text mix-blend-difference text-white text-invert mx-auto"
         text="Shuffle"
         onClick={() => setShuffleVariant(Math.random())}
       />

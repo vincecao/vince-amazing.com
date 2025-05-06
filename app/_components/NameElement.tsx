@@ -42,7 +42,7 @@ function NameElement({ avatar }: { avatar: ReactElement }): ReactElement {
       onClick={() => window.open('https://github.com/vincecao', '_blank')}
     >
       {avatar}
-      <span id="name" className="text-3xl font-english">
+      <span id="name" className="text-xl md:text-3xl font-english">
         Lineng <b>Cao</b>
       </span>
     </div>

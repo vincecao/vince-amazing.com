@@ -3,7 +3,7 @@ import { memo } from 'react';
 
 function Source(): ReactElement {
   return (
-    <div id="source-code-div" data-testid="source-div" className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-50 opacity-60">
+    <div id="source-code-div" data-testid="source-div" className="fixed bottom-4 md:bottom-8 left-4 md:left-8 z-50 opacity-60">
       <a
         href="https://github.com/vincecao/vince-amazing.com"
         target="_blank"

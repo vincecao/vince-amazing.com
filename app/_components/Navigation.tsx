@@ -33,9 +33,9 @@ function Navigation() {
           duration: 0.5,
         })
         .from('#source-code-div', {
-          y: '10px',
+          x: '-10px',
           autoAlpha: 0,
-          duration: 0.8,
+          duration: 0.5,
         });
     });
     return () => ctx.revert();

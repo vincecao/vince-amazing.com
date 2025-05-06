@@ -21,11 +21,11 @@ export default function RootLayout({
       <meta name="apple-mobile-web-app-title" content="MyWebSite" />
       <body className="bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 font-sans transition-all duration-300">
         <PostHogProvider>
+          <BlurBackgroundWrapper />
           <Navigation />
           <ThemeToggle />
           <Source />
           {children}
-          <BlurBackgroundWrapper />
         </PostHogProvider>
       </body>
     </html>

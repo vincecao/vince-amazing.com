@@ -15,7 +15,8 @@ const Grid = ({ id, url }: { id: string; url: string }) => {
         onMouseEnter={() => setBackground(url)}
         onMouseLeave={() => setBackground(null)}
         src={url}
-        className="w-auto md:w-[12rem] aspect-square object-cover transition ease-in-out duration-75 brightness-75 saturate-50 hover:brightness-100 hover:saturate-100 md:hover:scale-125"
+        className="w-auto h-[50vw] md:w-[12rem] md:h-[12rem] object-cover transition ease-in-out duration-75 brightness-75 saturate-50 hover:brightness-100 hover:saturate-100 md:hover:scale-125"
+        style={{ aspectRatio: '1/1' }}
       />
     </a>
   );

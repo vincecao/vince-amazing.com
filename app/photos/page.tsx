@@ -15,7 +15,7 @@ async function fetchPhotos() {
 export default async function PhotosPage() {
   const photos = await fetchPhotos();
   return (
-    <div className="flex flex-col w-full items-center self-center">
+    <div className="flex flex-col w-full">
       <Suspense fallback={<div className="font-['Mansalva']">Loading...</div>}>
         <PhotoGrids photos={photos} />
       </Suspense>
