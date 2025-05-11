@@ -32,7 +32,7 @@ function Navigation() {
           autoAlpha: 0,
           duration: 0.5,
         })
-        .from('#source-code-div', {
+        .from('#source-code-span', {
           x: '-10px',
           autoAlpha: 0,
           duration: 0.5,
@@ -46,9 +46,7 @@ function Navigation() {
       id="side-nav"
       className={classNames(
         'fixed top-4 right-4 md:top-8 md:right-8 md:text-2xl [writing-mode:vertical-lr] space-y-3 md:space-y-5 z-50 p-1 -m-1',
-        {
-          'rounded-full backdrop-blur-sm': !pathname.startsWith('/blog'),
-        }
+        { 'mix-blend-difference text-white text-invert': pathname.startsWith('/photos') }
       )}
       onMouseEnter={pathname === '/' ? setRandomBackground : () => {}}
       onMouseLeave={() => setBackground(null)}
