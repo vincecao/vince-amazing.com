@@ -60,8 +60,8 @@ function Navigation() {
         </NavigationLink>
       ))}
       <NavigationLink
-        href="/resume/Resume_02_23_2025.pdf"
-        download="Resume_02_23_2025.pdf"
+        href="/resume/Resume_02_23_2025_2.pdf"
+        download="Resume_02_23_2025_2.pdf"
         target="_blank"
         title="Resume"
         rel="noopener noreferrer"
