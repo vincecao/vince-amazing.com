@@ -1,10 +1,11 @@
 import { memo, useMemo } from 'react';
 
-import { getCategoryColor } from '@/app/blog/_utils/client';
-import { PostElement } from '@/app/blog/_utils/server';
 import useAppearance from '@/shared/hooks/use-appearance';
 import { format, isValid } from 'date-fns';
 import Link from 'next/link';
+
+import { getCategoryColor } from '../_utils/client';
+import { PostElement } from '../_utils/server';
 
 const PostEntry = ({ element: [postId, postEntry] }: { element: PostElement }) => {
   const { appearance } = useAppearance();

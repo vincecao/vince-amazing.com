@@ -2,13 +2,13 @@
 
 import { memo, useMemo, useState } from 'react';
 
+import { Photo } from '@/domain/entities/Photo';
 import Button from '@/shared/components/Button';
-import { PhotoSrc } from '@/shared/helpers/flickr.server';
 import useShuffle from '@/shared/hooks/use-shuffle';
 
 import PhotoGrid from './PhotoGrid';
 
-function Grids({ photos }: { photos: PhotoSrc[] }) {
+function Grids({ photos }: { photos: Photo[] }) {
   const [shuffleVariant, setShuffleVariant] = useState(0);
   const loadedPhotos = photos;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { getPostById } from '@/app/blog/_utils/server';
+import { PostService } from '../../../src/presentation/services/PostService';
+import { PostAdapter } from '../../../src/presentation/adapters/PostAdapter';
 
 import Post from './_components/Post';
 
@@ -12,15 +13,18 @@ interface PageProps {
 
 async function PostPage({ params }: PageProps) {
   const { postId } = params;
-  const post = await getPostById(postId);
+  const postService = new PostService();
+  const post = await postService.getPostById(postId);
 
   if (!post) return null;
   
+  const [, postEntry] = PostAdapter.toPostElement(post);
+  
   return (
     <>
-      <Post.Title title={post.title} />
-      <Post.Detail date={post.date} categories={post.categories} />
-      <Post.Body body={post.body} />
+      <Post.Title title={postEntry.title} />
+      <Post.Detail date={postEntry.date} categories={postEntry.categories} />
+      <Post.Body body={postEntry.body} />
     </>
   );
 }

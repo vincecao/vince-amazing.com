@@ -3,9 +3,9 @@
 import React, { type ReactElement, useLayoutEffect } from 'react';
 import { memo } from 'react';
 
-import { type PostElement } from '@/app/blog/_utils/server';
 import gsap from 'gsap';
 
+import { PostElement } from '../_utils/server';
 import PostEntry from './PostEntry';
 
 function PostList({ posts }: { posts: PostElement[] }): ReactElement {
