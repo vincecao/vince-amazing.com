@@ -8,7 +8,7 @@ import { PostRepository } from '../../domain/interfaces/PostRepository';
 export class FilePostRepo implements PostRepository {
   private readonly postsDirectory: string;
 
-  constructor(postsDirectory: string = join(process.cwd(), 'app/blog/_posts')) {
+  constructor(postsDirectory: string = join(process.cwd(), '/src/app/blog/_posts')) {
     if (!postsDirectory) {
       throw new Error('Posts directory is required');
     }

@@ -10,7 +10,7 @@ export interface PostEntry {
 
 export type PostElement = [string, PostEntry];
 
-export class PostAdapter {
+export default class PostAdapter {
   static toPostElement(post: Post): PostElement {
     const postEntry: PostEntry = {
       title: post.title,

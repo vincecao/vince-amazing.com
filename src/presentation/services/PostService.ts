@@ -1,7 +1,7 @@
 import { Post } from '../../domain/entities/Post';
 import { Container } from '../../infra/container/Container';
 
-export class PostService {
+export default class PostService {
   private container = Container.getInstance();
 
   async getPosts(): Promise<Post[]> {
