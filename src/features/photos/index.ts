@@ -10,4 +10,5 @@ export { default as FlickrPhotoRepo } from './infra/FlickrPhotoRepo';
 export { default as PhotosContainer } from './infra/PhotosContainer';
 
 // Presentation exports
-export { default as Grids } from './presentation/components/Grids'; 
+export { default as Grids } from './presentation/components/Grids';
+export { default as PhotoService } from './presentation/PhotoService'; 

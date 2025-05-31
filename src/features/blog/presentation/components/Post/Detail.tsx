@@ -3,10 +3,11 @@
 import type { ReactElement } from 'react';
 import { memo, useMemo } from 'react';
 
-import { type PostEntry } from '../../adapters/PostAdapter';
 import useAppearance from '@/shared/hooks/use-appearance';
 import { AnimatedGsapDiv } from '@vincecao/animated-in-view';
 import { format, isValid } from 'date-fns';
+
+import { PostEntry } from '../../adapters/PostAdapter';
 
 export function getCategoryColor(categories: string[], appearance: string): string {
   const hash = categories.reduce((acc, cat) => {
@@ -17,13 +18,7 @@ export function getCategoryColor(categories: string[], appearance: string): stri
   return `hsl(${hash % 270}, 15%, ${lightness}%)`;
 }
 
-function Detail({
-  date,
-  categories,
-}: {
-  date: PostEntry['date'];
-  categories: PostEntry['categories'];
-}): ReactElement {
+function Detail({ date, categories }: { date: PostEntry['date']; categories: PostEntry['categories'] }): ReactElement {
   const { appearance } = useAppearance();
   const displayDate = useMemo(() => (isValid(new Date(date)) ? format(date, 'Pp') : undefined), [date]);
 
@@ -49,4 +44,4 @@ function Detail({
   );
 }
 
-export default memo(Detail); 
+export default memo(Detail);
