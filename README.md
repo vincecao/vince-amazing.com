@@ -2,29 +2,29 @@
 
 Entrance: [vince-amazing.com](//vince-amazing.com)
 
-## 🏗️ Clean Architecture Layers
+## 🏗️ Vertical Slice Architecture
 
-### 💼 **Application Layer** (`src/application/`)
-- **Use Cases**: Business logic and orchestration
+This project uses a **Vertical Slice Architecture** that organizes code by business features rather than technical layers, achieving high cohesion within features and low coupling between them.
 
-### 🏛️ **Domain Layer** (`src/domain/`)
-- **Entities**: Core business objects (`Photo`, `Post`)
-- **Interfaces**: Repository contracts defining data access patterns
+### 🎯 **Feature Slices** (`src/features/`)
 
-### 🔧 **Infrastructure Layer** (`src/infra/`)
-- **Repositories**: Concrete data access implementations
-- **Services**: External service integrations (Redis, APIs)
-- **Container**: Dependency injection and configuration
+Each feature contains everything needed for that business capability:
 
-### 🎨 **Presentation Layer** (`src/presentation/`)
-- **Components**: Feature-specific UI components
-- **Services**: Coordinate use cases for UI needs
-- **Adapters**: Transform domain data for UI consumption
+- **`blog/`** - Blog posts and content management
+  - `domain/` - Blog entities and business rules
+  - `application/` - Blog use cases and workflows
+  - `infra/` - Blog data access (file system, markdown) with dependency injection
+  - `presentation/` - Blog UI components and adapters
 
-### 🌐 **Shared Layer** (`src/shared/`)
-- **Assets**: Website assets, e.g. font, pdfs
-- **Hooks**: Custom React hooks
-- **Helpers**: Pure utility functions
-- **Consts**: Common constant variables
+- **`photos/`** - Photo gallery and management
+  - `domain/` - Photo entities and business rules
+  - `application/` - Photo use cases and workflows
+  - `infra/` - Photo data access (Flickr API) with dependency injection
+  - `presentation/` - Photo UI components
 
+### 🌐 **Shared Infrastructure** (`src/shared/`)
+- **`assets/`** - Website assets (fonts, PDFs, images)
+- **`helpers/`** - Pure utility functions
+- **`hooks/`** - Custom React hooks
+- **`components/`** - Reusable UI components (Button, etc.)
 

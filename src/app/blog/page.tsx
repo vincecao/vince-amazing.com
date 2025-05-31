@@ -1,10 +1,9 @@
-import PostAdapter from '@/presentation/adapters/PostAdapter';
-import { Posts } from '@/presentation/components/blog';
-import PostService from '@/presentation/services/PostService';
+import { PostAdapter, Posts, BlogContainer } from '@/features/blog';
 
 export default async function BlogPage() {
-  const postService = new PostService();
-  const posts = await postService.getPosts();
+  const blogContainer = BlogContainer.getInstance();
+  const getPostsUseCase = blogContainer.getPostsUseCase();
+  const posts = await getPostsUseCase.execute();
   const postEls = PostAdapter.toPostElements(posts);
 
   return !postEls ? null : (

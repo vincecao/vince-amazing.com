@@ -1,11 +1,11 @@
 import { type ReactElement, Suspense } from 'react';
 
-import { Grids } from '@/presentation/components/photo';
-import PhotoService from '@/presentation/services/PhotoService';
+import { Grids, PhotosContainer } from '@/features/photos';
 
 export default async function PhotosPage(): Promise<ReactElement> {
-  const photoService = new PhotoService();
-  const photos = await photoService.getPhotos();
+  const photosContainer = PhotosContainer.getInstance();
+  const getPhotosUseCase = photosContainer.getPhotosUseCase();
+  const photos = await getPhotosUseCase.execute();
 
   return (
     <div className="flex flex-col w-full items-center justify-center min-h-screen">

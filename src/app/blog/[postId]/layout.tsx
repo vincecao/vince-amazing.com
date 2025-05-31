@@ -1,6 +1,6 @@
 import { PropsWithChildren, memo } from 'react';
 
-import { Back } from '@/presentation/components/ui';
+import { Back } from '@/shared/components/ui';
 
 function layout({ children }: PropsWithChildren<{}>) {
   return (

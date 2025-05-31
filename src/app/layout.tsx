@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import { PostHogProvider } from '@/presentation/components/providers';
-import { Blur, Navigation, Source, Theme } from '@/presentation/components/ui';
+import { PostHogProvider } from '@/shared/components/providers';
+import { Blur, Navigation, Source, Theme } from '@/shared/components/ui';
 import './globals.css';
 
 export const metadata: Metadata = {
