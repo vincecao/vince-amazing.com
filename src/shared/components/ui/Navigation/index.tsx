@@ -74,6 +74,9 @@ function Navigation() {
       <Link href="//github.com/vincecao" target="_blank" title="GitHub">
         /github
       </Link>
+      <Link href="//book-n-cast.vercel.app/" target="_blank" title="Book&Cast">
+        /<span className="font-['Shadows_Into_Light']">Book&Cast</span>
+      </Link>
     </span>
   );
 }
